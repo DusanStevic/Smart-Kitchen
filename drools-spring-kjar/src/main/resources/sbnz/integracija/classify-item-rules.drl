@@ -1,0 +1,12 @@
+package sbnz.integracija;
+
+import rs.ac.uns.ftn.backend.model.Item;
+
+
+rule "Classify Item - Low Range"
+    when
+        $i: Item( cost <= 300, category == Category.NA )
+    then
+        $i.setCategory(Item.Category.LOW_RANGE);
+        update($i);
+end

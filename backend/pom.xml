@@ -97,12 +97,8 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-            <groupId>com.jayway.jsonpath</groupId>
-            <artifactId>json-path</artifactId>
-            <scope>test</scope>
-        </dependency>
-        
+
+       
          <dependency>
 			<groupId>org.kie</groupId>
 			<artifactId>kie-ci</artifactId>
@@ -114,10 +110,12 @@
             <version>${kie.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-library</artifactId>
-            <scope>test</scope>
-        </dependency>
+	  		<groupId>sbnz.integracija</groupId>
+	  		<artifactId>drools-spring-kjar</artifactId>
+	  		<type>jar</type>
+	  		<version>0.0.1-SNAPSHOT</version>
+  		</dependency>
+
 	</dependencies>
 
 	<build>
