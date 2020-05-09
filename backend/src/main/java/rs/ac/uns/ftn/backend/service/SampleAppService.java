@@ -1,4 +1,4 @@
-package rs.ac.uns.ftn.backend;
+package rs.ac.uns.ftn.backend.service;
 
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;

@@ -1,4 +1,4 @@
-package rs.ac.uns.ftn.backend;
+package rs.ac.uns.ftn.backend.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import rs.ac.uns.ftn.backend.model.Item;
+import rs.ac.uns.ftn.backend.service.SampleAppService;
 
 
 
