@@ -1,4 +1,4 @@
-package sbnz.integracija;
+package drools.spring.rules;
 
 import rs.ac.uns.ftn.backend.model.Item;
 

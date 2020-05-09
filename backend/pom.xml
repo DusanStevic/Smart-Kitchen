@@ -110,7 +110,7 @@
             <version>${kie.version}</version>
         </dependency>
         <dependency>
-	  		<groupId>sbnz.integracija</groupId>
+	  		<groupId>drools-spring</groupId>
 	  		<artifactId>drools-spring-kjar</artifactId>
 	  		<type>jar</type>
 	  		<version>0.0.1-SNAPSHOT</version>
