@@ -1,1 +1,22 @@
-<p>navbar-unregistered-user works!</p>
+<mat-toolbar color="primary" class="navbar">
+
+    <button mat-button [routerLink]="['/home']">
+        <mat-icon class="example-icon" aria-hidden="false" aria-label="Smart Kitchen icon">camera</mat-icon>
+        <span>Smart Kitchen</span>
+    </button>
+
+    <span class="example-spacer"></span>
+
+
+    <div>
+        <button mat-button [routerLink]="['/login']" id="login-btn">
+            <mat-icon class="example-icon" aria-hidden="false" aria-label="Login icon">input</mat-icon>
+            <span>Login</span>
+        </button>
+        <button mat-button [routerLink]="['/register']" id="register-btn">
+            <mat-icon class="example-icon" aria-hidden="false" aria-label="Register icon">person_add</mat-icon>
+            <span>Register</span>
+        </button>
+    </div>
+
+</mat-toolbar>

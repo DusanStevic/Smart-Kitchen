@@ -1,1 +1,32 @@
-<p>navbar-admin works!</p>
+<mat-toolbar color="primary" class="navbar">
+
+    <button mat-button [routerLink]="['/home']">
+      <mat-icon class="example-icon" aria-hidden="false" aria-label="Smart Kitchen icon">camera</mat-icon>
+      <span>Smart Kitchen</span>
+    </button>
+
+    <span class="example-spacer"></span>
+
+    <div>
+      <button  mat-button [routerLink]="['/profile']" id="myProfileNav">
+        <mat-icon class="example-icon" aria-hidden="false" aria-label="Profile icon">supervised_user_circle</mat-icon>
+        <span>Profile</span>
+      </button>
+
+      <button mat-button [routerLink]="['/ingredient']" id="ingredient-btn">
+        <mat-icon class="example-icon" aria-hidden="false" aria-label="Ingredient icon">restaurant</mat-icon>
+        <span>Ingredient</span>
+      </button>
+
+      <button mat-button [routerLink]="['/recipe']" id="recipe-btn">
+        <mat-icon class="example-icon" aria-hidden="false" aria-label="Recipe icon">menu_book</mat-icon>
+        <span>Recipe</span>
+      </button>
+
+      <button mat-button (click)="logOut()" id="logout-btn">
+        <mat-icon class="example-icon" aria-hidden="false" aria-label="Logout icon">highlight_off</mat-icon>
+        <span>Logout</span>
+      </button>
+    </div>
+
+  </mat-toolbar>

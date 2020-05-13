@@ -10,6 +10,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { HomeComponent } from './home/home.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
+import { JwtInterceptor } from './core/interceptors/jwt-interceptor.interceptor';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,6 +24,9 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     MaterialModule,
     AuthenticationModule,
     ToastrModule.forRoot({
@@ -33,7 +39,7 @@ import { SharedModule } from './shared/shared.module';
     CoreModule,
     SharedModule,
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
