@@ -4,6 +4,5 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ConstantsService {
-  readonly localhost = 'http://localhost:8080';
-  readonly authenticationPath = 'http://localhost:8080/auth';
+  readonly authenticationPath = '/api/auth';
 }
