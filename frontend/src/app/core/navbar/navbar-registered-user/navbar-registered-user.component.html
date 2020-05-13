@@ -1,1 +1,27 @@
-<p>navbar-registered-user works!</p>
+<mat-toolbar color="primary" class="navbar">
+
+  <button mat-button [routerLink]="['/home']">
+    <mat-icon class="example-icon" aria-hidden="false" aria-label="Smart Kitchen icon">camera</mat-icon>
+    <span>Smart Kitchen</span>
+  </button>
+
+  <span class="example-spacer"></span>
+
+  <div>
+    <button  mat-button [routerLink]="['/profile']" id="myProfileNav">
+      <mat-icon class="example-icon" aria-hidden="false" aria-label="Profile icon">supervised_user_circle</mat-icon>
+      <span>Profile</span>
+    </button>
+
+    <button mat-button [routerLink]="['/fridge']" id="fridge-btn">
+      <mat-icon class="example-icon" aria-hidden="false" aria-label="Fridge icon">kitchen</mat-icon>
+      <span>Fridge</span>
+    </button>
+
+    <button mat-button (click)="logOut()" id="logout-btn">
+      <mat-icon class="example-icon" aria-hidden="false" aria-label="Logout icon">highlight_off</mat-icon>
+      <span>Logout</span>
+    </button>
+  </div>
+
+</mat-toolbar>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-navbar-unregistered-user',
@@ -7,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarUnregisteredUserComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private toastr: ToastrService) {
+  }
 
   ngOnInit() {
   }
