@@ -8,6 +8,8 @@ import { MaterialModule } from './material/material.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { ToastrModule } from 'ngx-toastr';
 import { HomeComponent } from './home/home.component';
+import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -28,6 +30,8 @@ import { HomeComponent } from './home/home.component';
       positionClass: 'toast-bottom-right',
       preventDuplicates: true
     }),
+    CoreModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
