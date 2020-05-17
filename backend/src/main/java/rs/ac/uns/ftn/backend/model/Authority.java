@@ -12,6 +12,8 @@ import org.springframework.security.core.GrantedAuthority;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import rs.ac.uns.ftn.backend.model.enumeration.Role;
+
 @Entity
 @Table(name = "authorities")
 public class Authority implements GrantedAuthority {

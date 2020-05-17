@@ -1,5 +1,7 @@
 package rs.ac.uns.ftn.backend.model;
 
+import rs.ac.uns.ftn.backend.model.enumeration.Role;
+
 /*Klasa kojom prezerviram neko stanje tj. klasa koja treba da se ponasa kao cookie. 
 Klasa koja treba od stateless http protokola da napravi stateful protokol
 Klasa koja omogucava da polepim u token sve sto mi treba 

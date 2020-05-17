@@ -10,7 +10,7 @@ import rs.ac.uns.ftn.backend.dto.RegistrationDTO;
 import rs.ac.uns.ftn.backend.model.Administrator;
 import rs.ac.uns.ftn.backend.model.Authority;
 import rs.ac.uns.ftn.backend.model.RegisteredUser;
-import rs.ac.uns.ftn.backend.model.Role;
+import rs.ac.uns.ftn.backend.model.enumeration.Role;
 
 
 
