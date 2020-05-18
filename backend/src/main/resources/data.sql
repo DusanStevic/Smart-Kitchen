@@ -16,6 +16,18 @@ INSERT INTO user_authority (user_id, authority_id) VALUES (1, 1); -- registered 
 INSERT INTO user_authority (user_id, authority_id) VALUES (2, 2); -- adminstrator has ROLE_ADMIN
 
 
+--recipes
+INSERT INTO `recipes` (id, name, description, recipe_type) VALUES (1, 'recipe1', 'recipe1', 0);
+INSERT INTO `recipes` (id, name, description, recipe_type) VALUES (2, 'recipe2', 'recipe2', 1);
+--ingredients
+INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id,total_price,total_calories) VALUES (1, 'ingredient1', 'ingredient1', 0, 10,10,10,1,0,0);
+INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id,total_price,total_calories) VALUES (2, 'ingredient2', 'ingredient2', 0, 20,20,20,1,0,0);
+INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id,total_price,total_calories) VALUES (3, 'ingredient3', 'ingredient3', 0, 30,30,30,2,0,0);
+INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id,total_price,total_calories) VALUES (4, 'ingredient4', 'ingredient4', 0, 40,40,40,2,0,0);
+INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id,total_price,total_calories) VALUES (5, 'ingredient5', 'ingredient5', 1, 50,50,50,1,0,0);
+INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id,total_price,total_calories) VALUES (6, 'ingredient6', 'ingredient6', 1, 60,60,60,1,0,0);
+INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id,total_price,total_calories) VALUES (7, 'ingredient7', 'ingredient7', 1, 70,70,70,2,0,0);
+INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id,total_price,total_calories) VALUES (8, 'ingredient8', 'ingredient8', 1, 80,80,80,2,0,0);
 
 
         
