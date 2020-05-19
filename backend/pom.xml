@@ -74,13 +74,15 @@
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
 		</dependency>
+		<!-- Niposto ne stavljaj ovaj dependency,
+		 drools vec u sebi ima automatsko osvezavanje -->
 		<!-- LiveReload dependency -->
-		<dependency> 
+<!-- 		<dependency> 
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

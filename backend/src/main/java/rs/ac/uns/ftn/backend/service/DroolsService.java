@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,13 +25,20 @@ public class DroolsService {
 	
 	
 	
+	private static Logger log = LoggerFactory.getLogger(DroolsService.class);
+
+	
+	private final KieContainer kieContainer;
+	
 	@Autowired
-	private KieContainer kieContainer;
+	public DroolsService(KieContainer kieContainer) {
+		log.info("Initialising a new example session.");
+		this.kieContainer = kieContainer;
+	}
 	
 	
 	
 	public List<Recipe> recommandRecipe(InputDTO inputDTO) {
-		KieSession kieSession = kieContainer.newKieSession();
 		List<Recipe> recipes = recipeRepository.findAll();
 		return recipes;
   
@@ -37,12 +46,14 @@ public class DroolsService {
 	}
 	
 	public List<Ingredient> calculateTotalPrice() {
-		KieSession kieSession = kieContainer.newKieSession();
-		
+		KieSession kieSession = kieContainer.newKieSession();		
 		List<Ingredient> ingredients = ingredientRepository.findAll();
 		for (Ingredient ingredient : ingredients) {
-			System.out.println(ingredient.toString());
+			
+			kieSession.insert(ingredient);
 		}
+		kieSession.fireAllRules();
+		kieSession.dispose();
 		return ingredients;
   
        

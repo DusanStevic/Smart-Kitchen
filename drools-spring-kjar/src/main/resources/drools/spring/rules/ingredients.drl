@@ -2,9 +2,7 @@ package drools.spring.rules;
 
 import rs.ac.uns.ftn.backend.model.Ingredient;
 
-
-
-rule "Total price fir ingredient"
+rule "Total price for ingredient"
     when
         u: Ingredient()
     then
@@ -19,4 +17,3 @@ rule "Total calories for ingredient"
         u.setTotal_calories(u.getQuantity()*u.getCalories());
         update(u)
 end
-

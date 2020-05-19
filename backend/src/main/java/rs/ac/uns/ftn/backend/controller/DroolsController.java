@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,15 +19,23 @@ import rs.ac.uns.ftn.backend.dto.InputDTO;
 import rs.ac.uns.ftn.backend.model.Ingredient;
 import rs.ac.uns.ftn.backend.model.Recipe;
 import rs.ac.uns.ftn.backend.service.DroolsService;
+import rs.ac.uns.ftn.backend.service.SampleAppService;
 
 @RestController
 @RequestMapping(value = "/api/drools")
 public class DroolsController {
-    @Autowired
-    private DroolsService droolsService;
-    
-    @Autowired
-	private KieContainer kieContainer;
+	
+	private static Logger log = LoggerFactory.getLogger(SampleAppController.class);
+
+	private final DroolsService droolsService;
+
+	@Autowired
+	public DroolsController(DroolsService droolsService) {
+		this.droolsService = droolsService;
+	}
+	
+ 
+
     
     @PostMapping(value = "/recipe")
 	public ResponseEntity<List<Recipe>> recipe(@RequestBody InputDTO dto) {
@@ -41,15 +51,8 @@ public class DroolsController {
     
     @GetMapping(value = "/calculate", produces = "application/json")
 	public ResponseEntity<List<Ingredient>> calculate() {
-    	KieSession kieSession = kieContainer.newKieSession();
 		List<Ingredient> ingredients = droolsService.calculateTotalPrice();
-		for (Ingredient ingredient : ingredients) {
-			kieSession.insert(ingredient);
-		}
-	    
-		kieSession.fireAllRules();
-	    
-		
+		log.debug("Item request received for: " + ingredients);	
 		return new ResponseEntity<List<Ingredient>>(ingredients, HttpStatus.OK);
 	}
 

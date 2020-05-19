@@ -41,30 +41,13 @@ public class Ingredient {
     private double calories;
     
     @Column(name = "total_price")
-    private double total_price;
+    private Double total_price;
     
     @Column(name = "total_calories")
-    private double total_calories;
+    private Double total_calories;
     
 	
-	public double getTotal_price() {
-		return total_price;
-	}
-
-
-	public void setTotal_price(double total_price) {
-		this.total_price = total_price;
-	}
-
-
-	public double getTotal_calories() {
-		return total_calories;
-	}
-
-
-	public void setTotal_calories(double total_calories) {
-		this.total_calories = total_calories;
-	}
+	
 
 	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JsonBackReference("sastojci")
@@ -153,6 +136,54 @@ public class Ingredient {
 	public Ingredient() {
 	
 	}
+
+
+	public Ingredient(Long id, String name, String description, IngredientType ingredientType, double price,
+			double quantity, double calories, double total_price, double total_calories, Recipe recipe) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.ingredientType = ingredientType;
+		this.price = price;
+		this.quantity = quantity;
+		this.calories = calories;
+		this.total_price = total_price;
+		this.total_calories = total_calories;
+		this.recipe = recipe;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Ingredient [id=" + id + ", name=" + name + ", description=" + description + ", ingredientType="
+				+ ingredientType + ", price=" + price + ", quantity=" + quantity + ", calories=" + calories
+				+ ", total_price=" + total_price + ", total_calories=" + total_calories + ", recipe=" + recipe + "]";
+	}
+
+
+	public Double getTotal_price() {
+		return total_price;
+	}
+
+
+	public void setTotal_price(Double total_price) {
+		this.total_price = total_price;
+	}
+
+
+	public Double getTotal_calories() {
+		return total_calories;
+	}
+
+
+	public void setTotal_calories(Double total_calories) {
+		this.total_calories = total_calories;
+	}
+	
+	
+	
+	
     
 
 }

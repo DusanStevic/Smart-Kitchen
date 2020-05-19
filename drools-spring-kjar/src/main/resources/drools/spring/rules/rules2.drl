@@ -2,7 +2,7 @@ package drools.spring.rules;
 
 import rs.ac.uns.ftn.backend.model.Item;
 
-rule "Classify Item - High Range"
+rule "Classify Item - High Range!!!"
     when
         $i: Item( cost > 300, category == Category.NA )
     then
