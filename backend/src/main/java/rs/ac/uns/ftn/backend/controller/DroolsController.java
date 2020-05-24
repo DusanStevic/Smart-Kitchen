@@ -37,15 +37,11 @@ public class DroolsController {
  
 
     
-    @PostMapping(value = "/recipe")
-	public ResponseEntity<List<Recipe>> recipe(@RequestBody InputDTO dto) {
-		List<Recipe> recipes = droolsService.recommandRecipe(dto);
-		return new ResponseEntity<List<Recipe>>(recipes, HttpStatus.OK);
-	}
+
     //all ingredients prebaci ga u poseban RecipeController
     @GetMapping(value = "/all-ingredients", produces = "application/json")
 	public ResponseEntity<List<Ingredient>> allIngredients() {
-		List<Ingredient> ingredients = droolsService.calculateTotalPrice();
+		List<Ingredient> ingredients = droolsService.ingredients();
 		return new ResponseEntity<List<Ingredient>>(ingredients, HttpStatus.OK);
 	}
     
@@ -55,5 +51,20 @@ public class DroolsController {
 		log.debug("Item request received for: " + ingredients);	
 		return new ResponseEntity<List<Ingredient>>(ingredients, HttpStatus.OK);
 	}
+    
+  //all ingredients prebaci ga u poseban RecipeController
+    @GetMapping(value = "/all-active-recipes", produces = "application/json")
+	public ResponseEntity<List<Recipe>> active() {
+		List<Recipe> recipes = droolsService.recipes();
+		return new ResponseEntity<List<Recipe>>(recipes, HttpStatus.OK);
+	}
+    
+    @GetMapping(value = "/deactivate", produces = "application/json")
+   	public ResponseEntity<List<Recipe>> deactivate() {
+   		List<Recipe> recipes = droolsService.deactivate();
+   		return new ResponseEntity<List<Recipe>>(recipes, HttpStatus.OK);
+   	}
+    
+    
 
 }

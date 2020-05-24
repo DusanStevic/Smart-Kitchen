@@ -3,10 +3,10 @@ package drools.spring.rules;
 import rs.ac.uns.ftn.backend.model.Item;
 
 
-rule "Classify Item - Low Range"
+rule "Classify Item CHEAP"
     when
         $i: Item( cost <= 300, category == Category.NA )
     then
-        $i.setCategory(Item.Category.LOW_RANGE);
+        $i.setCategory(Item.Category.CHEAP);
         update($i);
 end

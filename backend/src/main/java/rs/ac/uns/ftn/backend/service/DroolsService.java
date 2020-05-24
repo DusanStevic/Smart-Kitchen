@@ -1,5 +1,6 @@
 package rs.ac.uns.ftn.backend.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.kie.api.runtime.KieContainer;
@@ -38,9 +39,23 @@ public class DroolsService {
 	
 	
 	
-	public List<Recipe> recommandRecipe(InputDTO inputDTO) {
+	public List<Ingredient> ingredients() {
+		List<Ingredient> ingredients = ingredientRepository.findAll();
+		return ingredients;
+  
+       
+	}
+	
+	public List<Recipe> recipes() {
 		List<Recipe> recipes = recipeRepository.findAll();
-		return recipes;
+		List<Recipe> active = new ArrayList<>();
+		for (Recipe recipe : recipes) {
+			if (recipe.isActive()==true) {
+				active.add(recipe);
+			}
+			
+		}
+		return active;
   
        
 	}
@@ -55,6 +70,20 @@ public class DroolsService {
 		kieSession.fireAllRules();
 		kieSession.dispose();
 		return ingredients;
+  
+       
+	}
+	
+	public List<Recipe> deactivate() {
+		KieSession kieSession = kieContainer.newKieSession();		
+		List<Recipe> recipes = recipeRepository.findAll();
+		for (Recipe recipe : recipes) {
+			
+			kieSession.insert(recipe);
+		}
+		kieSession.fireAllRules();
+		kieSession.dispose();
+		return recipes;
   
        
 	}

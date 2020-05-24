@@ -1,0 +1,12 @@
+package drools.spring.rules;
+
+import rs.ac.uns.ftn.backend.model.Recipe;
+
+rule "Small grades"
+    when
+        r: Recipe(active == true,grade <= 3)
+    then
+        r.setActive(false);
+        update(r)
+end
+

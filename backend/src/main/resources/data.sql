@@ -17,8 +17,10 @@ INSERT INTO user_authority (user_id, authority_id) VALUES (2, 2); -- adminstrato
 
 
 --recipes
-INSERT INTO `recipes` (id, name, description, recipe_type) VALUES (1, 'recipe1', 'recipe1', 0);
-INSERT INTO `recipes` (id, name, description, recipe_type) VALUES (2, 'recipe2', 'recipe2', 1);
+INSERT INTO `recipes` (id, name, description, recipe_type,active,grade) VALUES (1, 'recipe1', 'recipe1', 0,true,4);
+INSERT INTO `recipes` (id, name, description, recipe_type,active,grade) VALUES (2, 'recipe2', 'recipe2', 1,true,1);
+INSERT INTO `recipes` (id, name, description, recipe_type,active,grade) VALUES (3, 'recipe3', 'recipe3', 3,false,2);
+INSERT INTO `recipes` (id, name, description, recipe_type,active,grade) VALUES (4, 'recipe4', 'recipe4', 4,true,5);
 --ingredients
 INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id) VALUES (1, 'ingredient1', 'ingredient1', 0, 10,10,10,1);
 INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id) VALUES (2, 'ingredient2', 'ingredient2', 0, 20,20,20,1);
@@ -28,6 +30,9 @@ INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quanti
 INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id) VALUES (6, 'ingredient6', 'ingredient6', 1, 60,60,60,1);
 INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id) VALUES (7, 'ingredient7', 'ingredient7', 1, 70,70,70,2);
 INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id) VALUES (8, 'ingredient8', 'ingredient8', 1, 80,80,80,2);
+
+INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id) VALUES (9, 'ingredient1', 'ingredient1', 0, 10,10,10,3);
+INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id) VALUES (10, 'ingredient1', 'ingredient1', 0, 10,10,10,4);
 
 
         

@@ -33,6 +33,12 @@ public class Recipe {
     
     @Column(name="recipe_type", nullable = false)
     private RecipeType recipeType;
+    
+	@Column(name = "active")
+	private boolean active;
+	
+	@Column(name = "grade")
+	private double grade;
 
 
 	
@@ -93,6 +99,29 @@ public class Recipe {
 	public Recipe() {
 		
 	}
+
+
+	public boolean isActive() {
+		return active;
+	}
+
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+
+	public double getGrade() {
+		return grade;
+	}
+
+
+	public void setGrade(double grade) {
+		this.grade = grade;
+	}
+	
+
+
     
 
 
