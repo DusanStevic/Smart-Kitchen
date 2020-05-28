@@ -1,0 +1,26 @@
+package drools.spring.rules;
+
+import rs.ac.uns.ftn.backend.model.Rating;
+
+rule "Calculate average grade"
+    when
+        $r: Rating()
+    then
+    	// weighted average = sum(grade * grade frequency)/total number of grades
+    	modify($r) { 
+    		 setAverageGrade((double)(1*$r.getFrequency1()+2*$r.getFrequency2()+3*$r.getFrequency3()+4*$r.getFrequency4()+5*$r.getFrequency5())/($r.getFrequency1()+$r.getFrequency2()+$r.getFrequency3()+$r.getFrequency4()+$r.getFrequency5()));
+    	}
+       
+        
+end
+
+rule "Calculate like dislike ratio"
+    when
+        $r: Rating()
+    then
+    	// ratio = number of likes / (number of likes + number of dislikes)
+    	modify($r) { 
+    		setLikeDislikeRatio((double)$r.getFrequencyLike()/($r.getFrequencyLike()+$r.getFrequencyDislike()));
+    	}
+       
+end

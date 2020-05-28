@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import rs.ac.uns.ftn.backend.dto.InputDTO;
 import rs.ac.uns.ftn.backend.model.Ingredient;
+import rs.ac.uns.ftn.backend.model.Rating;
 import rs.ac.uns.ftn.backend.model.Recipe;
 import rs.ac.uns.ftn.backend.service.DroolsService;
 import rs.ac.uns.ftn.backend.service.SampleAppService;
@@ -63,6 +64,12 @@ public class DroolsController {
    	public ResponseEntity<List<Recipe>> deactivate() {
    		List<Recipe> recipes = droolsService.deactivate();
    		return new ResponseEntity<List<Recipe>>(recipes, HttpStatus.OK);
+   	}
+    
+    @GetMapping(value = "/ratings", produces = "application/json")
+   	public ResponseEntity<List<Rating>> rating() {
+   		List<Rating> ratings = droolsService.ratings();
+   		return new ResponseEntity<List<Rating>>(ratings, HttpStatus.OK);
    	}
     
     

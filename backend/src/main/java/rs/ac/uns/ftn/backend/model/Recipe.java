@@ -1,7 +1,6 @@
 package rs.ac.uns.ftn.backend.model;
 
 import java.util.HashSet;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import rs.ac.uns.ftn.backend.model.enumeration.RecipeType;
 
@@ -44,7 +45,7 @@ public class Recipe {
 	
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "recipe")
     @JsonManagedReference("sastojci")
-    private Set<Ingredient> ingredients = new HashSet<>();
+    private Set<Ingredient> ingredients = new HashSet<Ingredient>();
 
 
 	public Long getId() {

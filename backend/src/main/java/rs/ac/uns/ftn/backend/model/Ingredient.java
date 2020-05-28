@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -32,13 +33,13 @@ public class Ingredient {
     private IngredientType ingredientType;
     
     @Column(name = "price", nullable = false)
-    private double price;
+    private Double price;
     
     @Column(name = "quantity", nullable = false)
-    private double quantity;
+    private Double quantity;
     
     @Column(name = "calories", nullable = false)
-    private double calories;
+    private Double calories;
     
     @Column(name = "total_price")
     private Double total_price;
@@ -51,7 +52,13 @@ public class Ingredient {
 
 	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JsonBackReference("sastojci")
+	@JoinColumn(name = "recipe_id")
     private Recipe recipe;
+
+
+	public Ingredient() {
+		// TODO Auto-generated constructor stub
+	}
 
 
 	public Long getId() {
@@ -94,71 +101,33 @@ public class Ingredient {
 	}
 
 
-	public double getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
 
-	public void setPrice(double price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 
 
-	public double getQuantity() {
+	public Double getQuantity() {
 		return quantity;
 	}
 
 
-	public void setQuantity(double quantity) {
+	public void setQuantity(Double quantity) {
 		this.quantity = quantity;
 	}
 
 
-	public double getCalories() {
+	public Double getCalories() {
 		return calories;
 	}
 
 
-	public void setCalories(double calories) {
+	public void setCalories(Double calories) {
 		this.calories = calories;
-	}
-
-
-	public Recipe getRecipe() {
-		return recipe;
-	}
-
-
-	public void setRecipe(Recipe recipe) {
-		this.recipe = recipe;
-	}
-    
-	public Ingredient() {
-	
-	}
-
-
-	public Ingredient(Long id, String name, String description, IngredientType ingredientType, double price,
-			double quantity, double calories, double total_price, double total_calories, Recipe recipe) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.ingredientType = ingredientType;
-		this.price = price;
-		this.quantity = quantity;
-		this.calories = calories;
-		this.total_price = total_price;
-		this.total_calories = total_calories;
-		this.recipe = recipe;
-	}
-
-
-	@Override
-	public String toString() {
-		return "Ingredient [id=" + id + ", name=" + name + ", description=" + description + ", ingredientType="
-				+ ingredientType + ", price=" + price + ", quantity=" + quantity + ", calories=" + calories
-				+ ", total_price=" + total_price + ", total_calories=" + total_calories + ", recipe=" + recipe + "]";
 	}
 
 
@@ -180,6 +149,29 @@ public class Ingredient {
 	public void setTotal_calories(Double total_calories) {
 		this.total_calories = total_calories;
 	}
+
+
+	public Recipe getRecipe() {
+		return recipe;
+	}
+
+
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
+	}
+
+
+
+	
+
+
+	
+	
+	
+	
+
+
+
 	
 	
 	

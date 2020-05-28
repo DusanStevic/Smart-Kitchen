@@ -34,6 +34,8 @@ INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quanti
 INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id) VALUES (9, 'ingredient1', 'ingredient1', 0, 10,10,10,3);
 INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id) VALUES (10, 'ingredient1', 'ingredient1', 0, 10,10,10,4);
 
+--ratings
+INSERT INTO `ratings` (id, frequency1, frequency2, frequency3, frequency4, frequency5, frequency_like, frequency_dislike) VALUES (1, 33, 29, 40, 124, 252, 75, 10);
 
         
         

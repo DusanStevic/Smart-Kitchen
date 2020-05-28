@@ -12,8 +12,10 @@ import org.springframework.stereotype.Service;
 
 import rs.ac.uns.ftn.backend.dto.InputDTO;
 import rs.ac.uns.ftn.backend.model.Ingredient;
+import rs.ac.uns.ftn.backend.model.Rating;
 import rs.ac.uns.ftn.backend.model.Recipe;
 import rs.ac.uns.ftn.backend.repository.IngredientRepository;
+import rs.ac.uns.ftn.backend.repository.RatingRepository;
 import rs.ac.uns.ftn.backend.repository.RecipeRepository;
 
 @Service
@@ -24,6 +26,8 @@ public class DroolsService {
 	@Autowired
 	private IngredientRepository ingredientRepository;
 	
+	@Autowired
+	private RatingRepository ratingRepository;
 	
 	
 	private static Logger log = LoggerFactory.getLogger(DroolsService.class);
@@ -84,6 +88,20 @@ public class DroolsService {
 		kieSession.fireAllRules();
 		kieSession.dispose();
 		return recipes;
+  
+       
+	}
+	
+	public List<Rating> ratings() {
+		KieSession kieSession = kieContainer.newKieSession();		
+		List<Rating> ratings = ratingRepository.findAll();
+		for (Rating rating : ratings) {
+			kieSession.insert(rating);
+		}
+
+		kieSession.fireAllRules();
+		kieSession.dispose();
+		return ratings;
   
        
 	}
