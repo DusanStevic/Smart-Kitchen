@@ -2,10 +2,10 @@ package drools.spring.rules;
 
 import rs.ac.uns.ftn.backend.model.Rating;
 
+
 /*can not operate with null values*/
 
 rule "Set frequency1 to 0"
-	salience 100
     when
         $rating: Rating(frequency1 == null)
     then
@@ -16,7 +16,6 @@ rule "Set frequency1 to 0"
 end
 
 rule "Set frequency2 to 0"
-	salience 100
     when
         $rating: Rating(frequency2 == null)
     then
@@ -27,7 +26,6 @@ rule "Set frequency2 to 0"
 end
 
 rule "Set frequency3 to 0"
-	salience 100
     when
         $rating: Rating(frequency3 == null)
     then
@@ -38,7 +36,6 @@ rule "Set frequency3 to 0"
 end
 
 rule "Set frequency4 to 0"
-	salience 100
     when
         $rating: Rating(frequency4 == null)
     then
@@ -49,13 +46,32 @@ rule "Set frequency4 to 0"
 end
 
 rule "Set frequency5 to 0"
-	salience 100
     when
         $rating: Rating(frequency5 == null)
     then
     	// Set frequency5 to 0
     	modify($rating) { 
     		 setFrequency5(0);
+    	}    
+end
+
+rule "Set like frequency to 0"
+    when
+        $rating: Rating(frequencyLike == null)
+    then
+    	// Set like frequency to 0
+    	modify($rating) { 
+    		 setFrequencyLike(0);
+    	}    
+end
+
+rule "Set dislike frequency to 0"
+    when
+        $rating: Rating(frequencyDislike == null)
+    then
+    	// Set dislike frequency to 0
+    	modify($rating) { 
+    		 setFrequencyDislike(0);
     	}    
 end
 
@@ -94,6 +110,8 @@ end
 1   1   1   1   0   11110=30
 1   1   1   1   1   11111=31
 */
+
+/*Grade rules*/
 
 rule "Calculate average grade when all frequencies are 0 f1f2f3f4f5=00000=0"
     when
@@ -415,25 +433,48 @@ rule "Calculate average grade when all frequencies are not 0 f1f2f3f4f5=11111=31
     	}     
 end
 
-/*rule "Calculate like dislike ratio when all values are null"
+/*Like rules*/
+
+rule "Calculate like-dislike ratio when all values are 0 like-dislike=ld=00=0 "
     when
-        $r: Rating(frequencyLike == null, frequencyDislike == null)
+        $rating: Rating(frequencyLike == 0 && frequencyDislike == 0)
     then
-    	// ratio = number of likes / (number of likes + number of dislikes)
-    	modify($r) { 
-    		setLikeDislikeRatio((double)0);
-    	}
-       
+    	// dividing by zero
+    	modify($rating) { 
+    		setLikeDislikeRatio((double)Math.round(0*100));
+    	}    
 end
 
-rule "Calculate like dislike ratio"
+rule "Calculate like dislike ratio like-dislike=ld=01=1"
     when
-        $r: Rating(frequencyLike != null, frequencyDislike != null)
+        $rating: Rating(frequencyLike == 0 && frequencyDislike != 0)
     then
-    	// ratio = number of likes / (number of likes + number of dislikes)
-    	modify($r) { 
-    		setLikeDislikeRatio((double)$r.getFrequencyLike()/($r.getFrequencyLike()+$r.getFrequencyDislike()));
+        
+    	// ratio = 0 / number of dislikes = 0 = 0 %
+    	modify($rating) { 
+    		setLikeDislikeRatio((double)Math.round(0*100));    		
     	}
-       
-end*/
+end
+
+rule "Calculate like dislike ratio like-dislike=ld=10=2"
+    when
+        $rating: Rating(frequencyLike != 0 && frequencyDislike == 0)
+    then
+        
+    	// ratio = number of likes / number of likes = 1 = 100%
+    	modify($rating) { 
+    		setLikeDislikeRatio((double)Math.round(1*100));      		
+    	}
+end
+
+rule "Calculate like dislike ratio like-dislike=11=3"
+    when
+        $rating: Rating(frequencyLike != 0 && frequencyDislike != 0)
+    then
+        
+    	// ratio = number of likes / (number of likes + number of dislikes)  0% < ratio < 100%
+    	modify($rating) { 
+    		setLikeDislikeRatio((double)Math.round(100*$rating.getFrequencyLike()/($rating.getFrequencyLike()+$rating.getFrequencyDislike())));     
+    	}
+end
 
