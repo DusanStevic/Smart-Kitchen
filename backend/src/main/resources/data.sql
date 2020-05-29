@@ -36,6 +36,9 @@ INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quanti
 
 --ratings
 INSERT INTO `ratings` (id, frequency1, frequency2, frequency3, frequency4, frequency5, frequency_like, frequency_dislike) VALUES (1, 33, 29, 40, 124, 252, 75, 10);
-
-        
+INSERT INTO `ratings` (id, frequency1, frequency2, frequency3, frequency4, frequency5, frequency_like, frequency_dislike) VALUES (2, null, null, null, null, null, null, null);
+INSERT INTO `ratings` (id, frequency1, frequency2, frequency3, frequency4, frequency5, frequency_like, frequency_dislike) VALUES (3, 33, null, 40, 124, 252, 75, 10);
+INSERT INTO `ratings` (id, frequency1, frequency2, frequency3, frequency4, frequency5, frequency_like, frequency_dislike) VALUES (4, null, 10, null, null, 4, null, null);
+INSERT INTO `ratings` (id, frequency1, frequency2, frequency3, frequency4, frequency5, frequency_like, frequency_dislike) VALUES (5, 33, 29, 40, 124, 252, 75, 10);
+INSERT INTO `ratings` (id, frequency1, frequency2, frequency3, frequency4, frequency5, frequency_like, frequency_dislike) VALUES (6, null, 10, null, null, null, null, 10);
         
