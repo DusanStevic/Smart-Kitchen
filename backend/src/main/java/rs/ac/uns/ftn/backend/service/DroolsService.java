@@ -17,6 +17,8 @@ import rs.ac.uns.ftn.backend.model.Recipe;
 import rs.ac.uns.ftn.backend.repository.IngredientRepository;
 import rs.ac.uns.ftn.backend.repository.RatingRepository;
 import rs.ac.uns.ftn.backend.repository.RecipeRepository;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 @Service
 public class DroolsService {
@@ -95,10 +97,12 @@ public class DroolsService {
 	public List<Rating> ratings() {
 		KieSession kieSession = kieContainer.newKieSession();		
 		List<Rating> ratings = ratingRepository.findAll();
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        decimalFormat.setRoundingMode(RoundingMode.CEILING);
 		for (Rating rating : ratings) {
 			kieSession.insert(rating);
 		}
-
+		kieSession.setGlobal("rounding", decimalFormat);
 		kieSession.fireAllRules();
 		kieSession.dispose();
 		return ratings;

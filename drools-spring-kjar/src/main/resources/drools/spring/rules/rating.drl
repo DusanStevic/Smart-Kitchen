@@ -1,7 +1,10 @@
 package drools.spring.rules;
 
 import rs.ac.uns.ftn.backend.model.Rating;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
+global DecimalFormat rounding;
 
 /*can not operate with null values*/
 
@@ -119,7 +122,7 @@ rule "Calculate average grade when all frequencies are 0 f1f2f3f4f5=00000=0"
     then
     	// dividing by zero
     	modify($rating) { 
-    		 setAverageGrade((double)0);
+    		 setAverageGrade((double)Math.round(0));
     	}      
 end
 
@@ -129,7 +132,7 @@ rule "Calculate average grade when f1f2f3f4f5=00001=1"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -139,7 +142,7 @@ rule "Calculate average grade when f1f2f3f4f5=00010=2"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -149,7 +152,7 @@ rule "Calculate average grade when f1f2f3f4f5=00011=3"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -159,7 +162,7 @@ rule "Calculate average grade when f1f2f3f4f5=00100=4"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -169,7 +172,7 @@ rule "Calculate average grade when f1f2f3f4f5=00101=5"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -179,7 +182,7 @@ rule "Calculate average grade when f1f2f3f4f5=00110=6"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -189,7 +192,7 @@ rule "Calculate average grade when f1f2f3f4f5=00111=7"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -199,7 +202,7 @@ rule "Calculate average grade when f1f2f3f4f5=01000=8"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -209,7 +212,7 @@ rule "Calculate average grade when f1f2f3f4f5=01001=9"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -219,7 +222,7 @@ rule "Calculate average grade when f1f2f3f4f5=01010=10"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -229,7 +232,7 @@ rule "Calculate average grade when f1f2f3f4f5=01011=11"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -239,7 +242,7 @@ rule "Calculate average grade when f1f2f3f4f5=01100=12"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -249,7 +252,7 @@ rule "Calculate average grade when f1f2f3f4f5=01101=13"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -259,7 +262,7 @@ rule "Calculate average grade when f1f2f3f4f5=01110=14"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -269,7 +272,7 @@ rule "Calculate average grade when f1f2f3f4f5=01111=15"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -279,7 +282,7 @@ rule "Calculate average grade when f1f2f3f4f5=10000=16"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -289,7 +292,7 @@ rule "Calculate average grade when f1f2f3f4f5=10001=17"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -299,7 +302,7 @@ rule "Calculate average grade when f1f2f3f4f5=10010=18"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -309,7 +312,7 @@ rule "Calculate average grade when f1f2f3f4f5=10011=19"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -319,7 +322,7 @@ rule "Calculate average grade when f1f2f3f4f5=10100=20"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -329,7 +332,7 @@ rule "Calculate average grade when f1f2f3f4f5=10101=21"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -339,7 +342,7 @@ rule "Calculate average grade when f1f2f3f4f5=10110=22"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -349,7 +352,7 @@ rule "Calculate average grade when f1f2f3f4f5=10111=23"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -359,7 +362,7 @@ rule "Calculate average grade when f1f2f3f4f5=11000=24"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -369,7 +372,7 @@ rule "Calculate average grade when f1f2f3f4f5=11001=25"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -379,7 +382,7 @@ rule "Calculate average grade when f1f2f3f4f5=11010=26"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -389,7 +392,7 @@ rule "Calculate average grade when f1f2f3f4f5=11011=27"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -399,7 +402,7 @@ rule "Calculate average grade when f1f2f3f4f5=11100=28"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -409,7 +412,7 @@ rule "Calculate average grade when f1f2f3f4f5=11101=29"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -419,7 +422,7 @@ rule "Calculate average grade when f1f2f3f4f5=11110=30"
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	} 
 end
 
@@ -429,7 +432,7 @@ rule "Calculate average grade when all frequencies are not 0 f1f2f3f4f5=11111=31
     then
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($rating) { 
-    		 setAverageGrade((double)(1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5()));
+    		 setAverageGrade((double)Math.round((1*$rating.getFrequency1()+2*$rating.getFrequency2()+3*$rating.getFrequency3()+4*$rating.getFrequency4()+5*$rating.getFrequency5())/($rating.getFrequency1()+$rating.getFrequency2()+$rating.getFrequency3()+$rating.getFrequency4()+$rating.getFrequency5())));
     	}     
 end
 
@@ -441,7 +444,7 @@ rule "Calculate like-dislike ratio when all values are 0 like-dislike=ld=00=0 "
     then
     	// dividing by zero
     	modify($rating) { 
-    		setLikeDislikeRatio((double)Math.round(0*100));
+    		setLikeDislikeRatio(Double.parseDouble(new DecimalFormat("#.##").format(0*100)));
     	}    
 end
 
@@ -452,7 +455,7 @@ rule "Calculate like dislike ratio like-dislike=ld=01=1"
         
     	// ratio = 0 / number of dislikes = 0 = 0 %
     	modify($rating) { 
-    		setLikeDislikeRatio((double)Math.round(0*100));    		
+    		setLikeDislikeRatio(Double.parseDouble(new DecimalFormat("#.##").format(0*100)));	
     	}
 end
 
@@ -463,7 +466,7 @@ rule "Calculate like dislike ratio like-dislike=ld=10=2"
         
     	// ratio = number of likes / number of likes = 1 = 100%
     	modify($rating) { 
-    		setLikeDislikeRatio((double)Math.round(1*100));      		
+    		setLikeDislikeRatio(Double.parseDouble(new DecimalFormat("#.##").format(1*100)));      		
     	}
 end
 
@@ -474,7 +477,15 @@ rule "Calculate like dislike ratio like-dislike=11=3"
         
     	// ratio = number of likes / (number of likes + number of dislikes)  0% < ratio < 100%
     	modify($rating) { 
-    		setLikeDislikeRatio((double)Math.round(100*$rating.getFrequencyLike()/($rating.getFrequencyLike()+$rating.getFrequencyDislike())));     
+    		//DecimalFormat df = new DecimalFormat("#.##");
+			//df.setRoundingMode(RoundingMode.CEILING);
+    		//setLikeDislikeRatio((double)Math.round(100*$rating.getFrequencyLike()/($rating.getFrequencyLike()+$rating.getFrequencyDislike())));
+    		//setLikeDislikeRatio(Double.parseDouble(new DecimalFormat("#.##").setRoundingMode(RoundingMode.CEILING).format(100*$rating.getFrequencyLike()/($rating.getFrequencyLike()+$rating.getFrequencyDislike())))); 
+    		
+    		//setLikeDislikeRatio(Double.parseDouble(new DecimalFormat("#.##").format((double)100*$rating.getFrequencyLike()/($rating.getFrequencyLike()+$rating.getFrequencyDislike()))));
+    		
+    		setLikeDislikeRatio(Double.parseDouble(rounding.format((double)100*$rating.getFrequencyLike()/($rating.getFrequencyLike()+$rating.getFrequencyDislike()))));
+    		     
     	}
 end
 
