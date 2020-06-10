@@ -94,20 +94,44 @@ public class DroolsService {
        
 	}
 	
-	public List<Rating> ratings() {
-		KieSession kieSession = kieContainer.newKieSession();		
-		List<Rating> ratings = ratingRepository.findAll();
-        DecimalFormat decimalFormat = new DecimalFormat("#.##");
-        decimalFormat.setRoundingMode(RoundingMode.CEILING);
-		for (Rating rating : ratings) {
-			kieSession.insert(rating);
-		}
-		kieSession.setGlobal("rounding", decimalFormat);
-		kieSession.fireAllRules();
-		kieSession.dispose();
-		return ratings;
-  
-       
-	}
+	//ovo radi
+	
+	  public List<Rating> ratings() { 
+		  KieSession kieSession = kieContainer.newKieSession(); 
+		  List<Rating> ratings = ratingRepository.findAll(); 
+		  DecimalFormat decimalFormat = new DecimalFormat("#.##"); 
+		  decimalFormat.setRoundingMode(RoundingMode.CEILING);
+		  for (Rating rating : ratings) { 
+			  kieSession.insert(rating); 
+		  }
+		  kieSession.setGlobal("rounding", decimalFormat);
+		  kieSession.getAgenda().getAgendaGroup("rating").setFocus();
+		  kieSession.fireAllRules();
+		  for (Rating rating : ratings) { 
+			  kieSession.insert(rating); 
+		  }
+		  kieSession.getAgenda().getAgendaGroup("high").setFocus();
+		  kieSession.fireAllRules();
+		  
+		  kieSession.dispose(); 
+		  return ratings;
+	  
+	  
+	  }
+	 
+	
+	/*
+	 * public List<Recipe> ratings() { KieSession kieSession =
+	 * kieContainer.newKieSession(); List<Recipe> recipes =
+	 * recipeRepository.findAll(); DecimalFormat decimalFormat = new
+	 * DecimalFormat("#.##"); decimalFormat.setRoundingMode(RoundingMode.CEILING);
+	 * for (Recipe recipe : recipes) { kieSession.insert(recipe); }
+	 * 
+	 * kieSession.setGlobal("rounding", decimalFormat); kieSession.fireAllRules();
+	 * kieSession.dispose(); return recipes;
+	 * 
+	 * 
+	 * }
+	 */
 
 }

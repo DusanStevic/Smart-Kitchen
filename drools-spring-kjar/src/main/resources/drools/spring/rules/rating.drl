@@ -9,6 +9,7 @@ global DecimalFormat rounding;
 /*can not operate with null values*/
 
 rule "Set frequency1 to 0"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 == null)
     then
@@ -19,6 +20,7 @@ rule "Set frequency1 to 0"
 end
 
 rule "Set frequency2 to 0"
+	agenda-group "rating"
     when
         $rating: Rating(frequency2 == null)
     then
@@ -29,6 +31,7 @@ rule "Set frequency2 to 0"
 end
 
 rule "Set frequency3 to 0"
+	agenda-group "rating"
     when
         $rating: Rating(frequency3 == null)
     then
@@ -39,6 +42,7 @@ rule "Set frequency3 to 0"
 end
 
 rule "Set frequency4 to 0"
+	agenda-group "rating"
     when
         $rating: Rating(frequency4 == null)
     then
@@ -49,6 +53,7 @@ rule "Set frequency4 to 0"
 end
 
 rule "Set frequency5 to 0"
+	agenda-group "rating"
     when
         $rating: Rating(frequency5 == null)
     then
@@ -59,6 +64,7 @@ rule "Set frequency5 to 0"
 end
 
 rule "Set like frequency to 0"
+	agenda-group "rating"
     when
         $rating: Rating(frequencyLike == null)
     then
@@ -69,6 +75,7 @@ rule "Set like frequency to 0"
 end
 
 rule "Set dislike frequency to 0"
+	agenda-group "rating"
     when
         $rating: Rating(frequencyDislike == null)
     then
@@ -117,6 +124,7 @@ end
 /*Grade rules*/
 
 rule "Calculate average grade when all frequencies are 0 f1f2f3f4f5=00000=0"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 == 0 && frequency2 == 0 && frequency3 == 0 && frequency4 == 0 && frequency5 == 0)
     then
@@ -127,6 +135,7 @@ rule "Calculate average grade when all frequencies are 0 f1f2f3f4f5=00000=0"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=00001=1"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 == 0 && frequency2 == 0 && frequency3 == 0 && frequency4 == 0 && frequency5 != 0)
     then
@@ -137,6 +146,7 @@ rule "Calculate average grade when f1f2f3f4f5=00001=1"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=00010=2"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 == 0 && frequency2 == 0 && frequency3 == 0 && frequency4 != 0 && frequency5 == 0)
     then
@@ -147,6 +157,7 @@ rule "Calculate average grade when f1f2f3f4f5=00010=2"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=00011=3"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 == 0 && frequency2 == 0 && frequency3 == 0 && frequency4 != 0 && frequency5 != 0)
     then
@@ -157,6 +168,7 @@ rule "Calculate average grade when f1f2f3f4f5=00011=3"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=00100=4"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 == 0 && frequency2 == 0 && frequency3 != 0 && frequency4 == 0 && frequency5 == 0)
     then
@@ -167,6 +179,7 @@ rule "Calculate average grade when f1f2f3f4f5=00100=4"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=00101=5"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 == 0 && frequency2 == 0 && frequency3 != 0 && frequency4 == 0 && frequency5 != 0)
     then
@@ -177,6 +190,7 @@ rule "Calculate average grade when f1f2f3f4f5=00101=5"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=00110=6"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 == 0 && frequency2 == 0 && frequency3 != 0 && frequency4 != 0 && frequency5 == 0)
     then
@@ -187,6 +201,7 @@ rule "Calculate average grade when f1f2f3f4f5=00110=6"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=00111=7"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 == 0 && frequency2 == 0 && frequency3 != 0 && frequency4 != 0 && frequency5 != 0)
     then
@@ -197,6 +212,7 @@ rule "Calculate average grade when f1f2f3f4f5=00111=7"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=01000=8"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 == 0 && frequency2 != 0 && frequency3 == 0 && frequency4 == 0 && frequency5 == 0)
     then
@@ -207,6 +223,7 @@ rule "Calculate average grade when f1f2f3f4f5=01000=8"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=01001=9"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 == 0 && frequency2 != 0 && frequency3 == 0 && frequency4 == 0 && frequency5 != 0)
     then
@@ -217,6 +234,7 @@ rule "Calculate average grade when f1f2f3f4f5=01001=9"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=01010=10"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 == 0 && frequency2 != 0 && frequency3 == 0 && frequency4 != 0 && frequency5 == 0)
     then
@@ -227,6 +245,7 @@ rule "Calculate average grade when f1f2f3f4f5=01010=10"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=01011=11"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 == 0 && frequency2 != 0 && frequency3 == 0 && frequency4 != 0 && frequency5 != 0)
     then
@@ -237,6 +256,7 @@ rule "Calculate average grade when f1f2f3f4f5=01011=11"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=01100=12"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 == 0 && frequency2 != 0 && frequency3 != 0 && frequency4 == 0 && frequency5 == 0)
     then
@@ -247,6 +267,7 @@ rule "Calculate average grade when f1f2f3f4f5=01100=12"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=01101=13"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 == 0 && frequency2 != 0 && frequency3 != 0 && frequency4 == 0 && frequency5 != 0)
     then
@@ -257,6 +278,7 @@ rule "Calculate average grade when f1f2f3f4f5=01101=13"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=01110=14"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 == 0 && frequency2 != 0 && frequency3 != 0 && frequency4 != 0 && frequency5 == 0)
     then
@@ -267,6 +289,7 @@ rule "Calculate average grade when f1f2f3f4f5=01110=14"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=01111=15"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 == 0 && frequency2 != 0 && frequency3 != 0 && frequency4 != 0 && frequency5 != 0)
     then
@@ -277,6 +300,7 @@ rule "Calculate average grade when f1f2f3f4f5=01111=15"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=10000=16"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 != 0 && frequency2 == 0 && frequency3 == 0 && frequency4 == 0 && frequency5 == 0)
     then
@@ -287,6 +311,7 @@ rule "Calculate average grade when f1f2f3f4f5=10000=16"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=10001=17"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 != 0 && frequency2 == 0 && frequency3 == 0 && frequency4 == 0 && frequency5 != 0)
     then
@@ -297,6 +322,7 @@ rule "Calculate average grade when f1f2f3f4f5=10001=17"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=10010=18"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 != 0 && frequency2 == 0 && frequency3 == 0 && frequency4 != 0 && frequency5 == 0)
     then
@@ -307,6 +333,7 @@ rule "Calculate average grade when f1f2f3f4f5=10010=18"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=10011=19"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 != 0 && frequency2 == 0 && frequency3 == 0 && frequency4 != 0 && frequency5 != 0)
     then
@@ -317,6 +344,7 @@ rule "Calculate average grade when f1f2f3f4f5=10011=19"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=10100=20"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 != 0 && frequency2 == 0 && frequency3 != 0 && frequency4 == 0 && frequency5 == 0)
     then
@@ -327,6 +355,7 @@ rule "Calculate average grade when f1f2f3f4f5=10100=20"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=10101=21"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 != 0 && frequency2 == 0 && frequency3 != 0 && frequency4 == 0 && frequency5 != 0)
     then
@@ -337,6 +366,7 @@ rule "Calculate average grade when f1f2f3f4f5=10101=21"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=10110=22"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 != 0 && frequency2 == 0 && frequency3 != 0 && frequency4 != 0 && frequency5 == 0)
     then
@@ -347,6 +377,7 @@ rule "Calculate average grade when f1f2f3f4f5=10110=22"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=10111=23"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 != 0 && frequency2 == 0 && frequency3 != 0 && frequency4 != 0 && frequency5 != 0)
     then
@@ -357,6 +388,7 @@ rule "Calculate average grade when f1f2f3f4f5=10111=23"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=11000=24"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 != 0 && frequency2 != 0 && frequency3 == 0 && frequency4 == 0 && frequency5 == 0)
     then
@@ -367,6 +399,7 @@ rule "Calculate average grade when f1f2f3f4f5=11000=24"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=11001=25"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 != 0 && frequency2 != 0 && frequency3 == 0 && frequency4 == 0 && frequency5 != 0)
     then
@@ -377,6 +410,7 @@ rule "Calculate average grade when f1f2f3f4f5=11001=25"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=11010=26"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 != 0 && frequency2 != 0 && frequency3 == 0 && frequency4 != 0 && frequency5 == 0)
     then
@@ -387,6 +421,7 @@ rule "Calculate average grade when f1f2f3f4f5=11010=26"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=11011=27"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 != 0 && frequency2 != 0 && frequency3 == 0 && frequency4 != 0 && frequency5 != 0)
     then
@@ -397,6 +432,7 @@ rule "Calculate average grade when f1f2f3f4f5=11011=27"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=11100=28"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 != 0 && frequency2 != 0 && frequency3 != 0 && frequency4 == 0 && frequency5 == 0)
     then
@@ -407,6 +443,7 @@ rule "Calculate average grade when f1f2f3f4f5=11100=28"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=11101=29"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 != 0 && frequency2 != 0 && frequency3 != 0 && frequency4 == 0 && frequency5 != 0)
     then
@@ -417,6 +454,7 @@ rule "Calculate average grade when f1f2f3f4f5=11101=29"
 end
 
 rule "Calculate average grade when f1f2f3f4f5=11110=30"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 != 0 && frequency2 != 0 && frequency3 != 0 && frequency4 != 0 && frequency5 == 0)
     then
@@ -427,6 +465,7 @@ rule "Calculate average grade when f1f2f3f4f5=11110=30"
 end
 
 rule "Calculate average grade when all frequencies are not 0 f1f2f3f4f5=11111=31"
+	agenda-group "rating"
     when
         $rating: Rating(frequency1 != 0 && frequency2 != 0 && frequency3 != 0 && frequency4 != 0 && frequency5 != 0)
     then
@@ -439,6 +478,7 @@ end
 /*Like rules*/
 
 rule "Calculate like-dislike ratio when all values are 0 like-dislike=ld=00=0 "
+	agenda-group "rating"
     when
         $rating: Rating(frequencyLike == 0 && frequencyDislike == 0)
     then
@@ -449,6 +489,7 @@ rule "Calculate like-dislike ratio when all values are 0 like-dislike=ld=00=0 "
 end
 
 rule "Calculate like dislike ratio like-dislike=ld=01=1"
+	agenda-group "rating"
     when
         $rating: Rating(frequencyLike == 0 && frequencyDislike != 0)
     then
@@ -460,6 +501,7 @@ rule "Calculate like dislike ratio like-dislike=ld=01=1"
 end
 
 rule "Calculate like dislike ratio like-dislike=ld=10=2"
+	agenda-group "rating"
     when
         $rating: Rating(frequencyLike != 0 && frequencyDislike == 0)
     then
@@ -471,6 +513,7 @@ rule "Calculate like dislike ratio like-dislike=ld=10=2"
 end
 
 rule "Calculate like dislike ratio like-dislike=11=3"
+	agenda-group "rating"
     when
         $rating: Rating(frequencyLike != 0 && frequencyDislike != 0)
     then
@@ -481,3 +524,18 @@ rule "Calculate like dislike ratio like-dislike=11=3"
     	}
 end
 
+rule "high grades"
+	agenda-group "high"
+    when
+        $rating: Rating(averageGrade <= 3)
+    then
+        delete($rating);
+end
+
+rule "high rates"
+	agenda-group "high"
+    when
+        $rating: Rating(likeDislikeRatio <= 60)
+    then
+        delete($rating);
+end

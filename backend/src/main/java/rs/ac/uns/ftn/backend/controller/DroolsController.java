@@ -66,12 +66,19 @@ public class DroolsController {
    		return new ResponseEntity<List<Recipe>>(recipes, HttpStatus.OK);
    	}
     
-    @GetMapping(value = "/ratings", produces = "application/json")
-   	public ResponseEntity<List<Rating>> rating() {
-   		List<Rating> ratings = droolsService.ratings();
-   		return new ResponseEntity<List<Rating>>(ratings, HttpStatus.OK);
-   	}
-    
+	 
+	 @GetMapping(value = "/ratings", produces = "application/json") 
+	 public ResponseEntity<List<Rating>> rating() { 
+		 List<Rating> ratings = droolsService.ratings(); 
+		 return new ResponseEntity<List<Rating>>(ratings,HttpStatus.OK); 
+	 }
+	 
+	/*
+	 * @GetMapping(value = "/ratings", produces = "application/json") public
+	 * ResponseEntity<List<Recipe>> rating() { List<Recipe> ratings =
+	 * droolsService.ratings(); return new ResponseEntity<List<Recipe>>(ratings,
+	 * HttpStatus.OK); }
+	 */
     
 
 }

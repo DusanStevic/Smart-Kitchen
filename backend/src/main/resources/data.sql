@@ -17,22 +17,34 @@ INSERT INTO user_authority (user_id, authority_id) VALUES (2, 2); -- adminstrato
 
 
 --recipes
-INSERT INTO `recipes` (id, name, description, recipe_type,active,grade) VALUES (1, 'recipe1', 'recipe1', 0,true,4);
-INSERT INTO `recipes` (id, name, description, recipe_type,active,grade) VALUES (2, 'recipe2', 'recipe2', 1,true,1);
-INSERT INTO `recipes` (id, name, description, recipe_type,active,grade) VALUES (3, 'recipe3', 'recipe3', 3,false,2);
-INSERT INTO `recipes` (id, name, description, recipe_type,active,grade) VALUES (4, 'recipe4', 'recipe4', 4,true,5);
+INSERT INTO `recipes` (id, name, description, recipe_type,active,rating_id) VALUES (1, 'recipe1', 'recipe1', 0,true,1);
+INSERT INTO `recipes` (id, name, description, recipe_type,active,rating_id) VALUES (2, 'recipe2', 'recipe2', 1,true,2);
+INSERT INTO `recipes` (id, name, description, recipe_type,active,rating_id) VALUES (3, 'recipe3', 'recipe3', 3,false,3);
+INSERT INTO `recipes` (id, name, description, recipe_type,active,rating_id) VALUES (4, 'recipe4', 'recipe4', 4,true,4);
+INSERT INTO `recipes` (id, name, description, recipe_type,active,rating_id) VALUES (5, 'recipe5', 'recipe5', 4,true,5);
+INSERT INTO `recipes` (id, name, description, recipe_type,active,rating_id) VALUES (6, 'recipe6', 'recipe6', 4,true,6);
 --ingredients
-INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id) VALUES (1, 'ingredient1', 'ingredient1', 0, 10,10,10,1);
-INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id) VALUES (2, 'ingredient2', 'ingredient2', 0, 20,20,20,1);
-INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id) VALUES (3, 'ingredient3', 'ingredient3', 0, 30,30,30,2);
-INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id) VALUES (4, 'ingredient4', 'ingredient4', 0, 40,40,40,2);
-INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id) VALUES (5, 'ingredient5', 'ingredient5', 1, 50,50,50,1);
-INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id) VALUES (6, 'ingredient6', 'ingredient6', 1, 60,60,60,1);
-INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id) VALUES (7, 'ingredient7', 'ingredient7', 1, 70,70,70,2);
-INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id) VALUES (8, 'ingredient8', 'ingredient8', 1, 80,80,80,2);
-
-INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id) VALUES (9, 'ingredient1', 'ingredient1', 0, 10,10,10,3);
-INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories, recipe_id) VALUES (10, 'ingredient1', 'ingredient1', 0, 10,10,10,4);
+INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories) VALUES (1, 'ingredient1', 'ingredient1', 0, 10,10,10);
+INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories) VALUES (2, 'ingredient2', 'ingredient2', 0, 20,20,20);
+INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories) VALUES (3, 'ingredient3', 'ingredient3', 0, 30,30,30);
+INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories) VALUES (4, 'ingredient4', 'ingredient4', 0, 40,40,40);
+INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories) VALUES (5, 'ingredient5', 'ingredient5', 1, 50,50,50);
+INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories) VALUES (6, 'ingredient6', 'ingredient6', 1, 60,60,60);
+INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories) VALUES (7, 'ingredient7', 'ingredient7', 1, 70,70,70);
+INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories) VALUES (8, 'ingredient8', 'ingredient8', 1, 80,80,80);
+INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories) VALUES (9, 'ingredient1', 'ingredient1', 0, 10,10,10);
+INSERT INTO `ingredients` (id, name, description, ingredient_type, price, quantity, calories) VALUES (10, 'ingredient1', 'ingredient1', 0, 10,10,10);
+--recipe_items
+INSERT INTO `recipe_items` (id, recipe_id, ingredient_id, amount) VALUES (1, 1, 1, 10);
+INSERT INTO `recipe_items` (id, recipe_id, ingredient_id, amount) VALUES (2, 1, 2, 20);
+INSERT INTO `recipe_items` (id, recipe_id, ingredient_id, amount) VALUES (3, 2, 3, 30);
+INSERT INTO `recipe_items` (id, recipe_id, ingredient_id, amount) VALUES (4, 2, 4, 40);
+INSERT INTO `recipe_items` (id, recipe_id, ingredient_id, amount) VALUES (5, 1, 5, 50);
+INSERT INTO `recipe_items` (id, recipe_id, ingredient_id, amount) VALUES (6, 1, 6, 60);
+INSERT INTO `recipe_items` (id, recipe_id, ingredient_id, amount) VALUES (7, 2, 7, 70);
+INSERT INTO `recipe_items` (id, recipe_id, ingredient_id, amount) VALUES (8, 2, 8, 80);
+INSERT INTO `recipe_items` (id, recipe_id, ingredient_id, amount) VALUES (9, 3, 9, 90);
+INSERT INTO `recipe_items` (id, recipe_id, ingredient_id, amount) VALUES (10, 4, 10, 100);
 
 --ratings
 INSERT INTO `ratings` (id, frequency1, frequency2, frequency3, frequency4, frequency5, frequency_like, frequency_dislike) VALUES (1, 33, 29, 40, 124, 252, 75, 10);

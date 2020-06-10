@@ -1,5 +1,8 @@
 package rs.ac.uns.ftn.backend.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,9 +12,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import rs.ac.uns.ftn.backend.model.enumeration.IngredientType;
 
@@ -47,134 +52,107 @@ public class Ingredient {
     @Column(name = "total_calories")
     private Double total_calories;
     
-	
-	
-
-	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-	@JsonBackReference("sastojci")
-	@JoinColumn(name = "recipe_id")
-    private Recipe recipe;
-
-
-	public Ingredient() {
-		// TODO Auto-generated constructor stub
-	}
-
+	@OneToMany(mappedBy = "ingredient", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private Set<RecipeItem> recipeItems = new HashSet<RecipeItem>();
 
 	public Long getId() {
 		return id;
 	}
 
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public String getName() {
 		return name;
 	}
 
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 
 	public String getDescription() {
 		return description;
 	}
 
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 
 	public IngredientType getIngredientType() {
 		return ingredientType;
 	}
 
-
 	public void setIngredientType(IngredientType ingredientType) {
 		this.ingredientType = ingredientType;
 	}
-
 
 	public Double getPrice() {
 		return price;
 	}
 
-
 	public void setPrice(Double price) {
 		this.price = price;
 	}
-
 
 	public Double getQuantity() {
 		return quantity;
 	}
 
-
 	public void setQuantity(Double quantity) {
 		this.quantity = quantity;
 	}
-
 
 	public Double getCalories() {
 		return calories;
 	}
 
-
 	public void setCalories(Double calories) {
 		this.calories = calories;
 	}
-
 
 	public Double getTotal_price() {
 		return total_price;
 	}
 
-
 	public void setTotal_price(Double total_price) {
 		this.total_price = total_price;
 	}
-
 
 	public Double getTotal_calories() {
 		return total_calories;
 	}
 
-
 	public void setTotal_calories(Double total_calories) {
 		this.total_calories = total_calories;
 	}
 
-
-	public Recipe getRecipe() {
-		return recipe;
+	public Set<RecipeItem> getRecipeItems() {
+		return recipeItems;
 	}
 
-
-	public void setRecipe(Recipe recipe) {
-		this.recipe = recipe;
+	public void setRecipeItems(Set<RecipeItem> recipeItems) {
+		this.recipeItems = recipeItems;
 	}
-
+	
+	
+    
+	
+	
 
 
 	
 
 
-	
-	
-	
-	
 
 
 
-	
-	
-	
+
+
+
+
+
 	
     
 

@@ -10,7 +10,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -38,14 +40,15 @@ public class Recipe {
 	@Column(name = "active")
 	private boolean active;
 	
-	@Column(name = "grade")
-	private double grade;
 
-
+	@OneToMany(mappedBy = "recipe", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private Set<RecipeItem> recipeItems = new HashSet<RecipeItem>();
 	
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "recipe")
-    @JsonManagedReference("sastojci")
-    private Set<Ingredient> ingredients = new HashSet<Ingredient>();
+	
+	@OneToOne
+	@JoinColumn(name = "rating_id")
+	private Rating rating;
 
 
 	public Long getId() {
@@ -88,20 +91,6 @@ public class Recipe {
 	}
 
 
-	public Set<Ingredient> getIngredients() {
-		return ingredients;
-	}
-
-
-	public void setIngredients(Set<Ingredient> ingredients) {
-		this.ingredients = ingredients;
-	}
-    
-	public Recipe() {
-		
-	}
-
-
 	public boolean isActive() {
 		return active;
 	}
@@ -112,14 +101,45 @@ public class Recipe {
 	}
 
 
-	public double getGrade() {
-		return grade;
+	public Set<RecipeItem> getRecipeItems() {
+		return recipeItems;
 	}
 
 
-	public void setGrade(double grade) {
-		this.grade = grade;
+	public void setRecipeItems(Set<RecipeItem> recipeItems) {
+		this.recipeItems = recipeItems;
 	}
+
+
+	public Rating getRating() {
+		return rating;
+	}
+
+
+	public void setRating(Rating rating) {
+		this.rating = rating;
+	}
+	
+	public Recipe() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public Recipe(Long id, String name, String description, RecipeType recipeType, boolean active,
+			Set<RecipeItem> recipeItems, Rating rating) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.recipeType = recipeType;
+		this.active = active;
+		this.recipeItems = recipeItems;
+		this.rating = rating;
+	}
+	
+	
+
+
 	
 
 
