@@ -94,7 +94,6 @@ public class DroolsService {
        
 	}
 	
-	//ovo radi
 	
 	  public List<Rating> ratings() { 
 		  KieSession kieSession = kieContainer.newKieSession(); 
@@ -118,6 +117,10 @@ public class DroolsService {
 	  
 	  
 	  }
+	  
+
+	  
+
 	 
 	
 	/*
