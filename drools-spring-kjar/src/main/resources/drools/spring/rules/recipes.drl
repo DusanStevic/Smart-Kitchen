@@ -1,3 +1,4 @@
+/*
 package drools.spring.rules;
 
 import rs.ac.uns.ftn.backend.model.Recipe;
@@ -9,4 +10,4 @@ rule "Small grades"
         r.setActive(false);
         update(r)
 end
-
+*/

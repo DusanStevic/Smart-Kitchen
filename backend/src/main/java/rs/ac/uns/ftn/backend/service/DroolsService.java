@@ -94,7 +94,7 @@ public class DroolsService {
        
 	}
 	
-	
+/*	
 	  public List<Rating> ratings() { 
 		  KieSession kieSession = kieContainer.newKieSession(); 
 		  List<Rating> ratings = ratingRepository.findAll(); 
@@ -118,23 +118,27 @@ public class DroolsService {
 	  
 	  }
 	  
-
+*/
 	  
 
 	 
 	
-	/*
-	 * public List<Recipe> ratings() { KieSession kieSession =
-	 * kieContainer.newKieSession(); List<Recipe> recipes =
-	 * recipeRepository.findAll(); DecimalFormat decimalFormat = new
-	 * DecimalFormat("#.##"); decimalFormat.setRoundingMode(RoundingMode.CEILING);
-	 * for (Recipe recipe : recipes) { kieSession.insert(recipe); }
-	 * 
-	 * kieSession.setGlobal("rounding", decimalFormat); kieSession.fireAllRules();
-	 * kieSession.dispose(); return recipes;
-	 * 
-	 * 
-	 * }
-	 */
+	
+	  public List<Recipe> ratings() { 
+		  KieSession kieSession = kieContainer.newKieSession(); 
+		  List<Recipe> recipes = recipeRepository.findAll(); 
+		  DecimalFormat decimalFormat = new DecimalFormat("#.##"); 
+		  decimalFormat.setRoundingMode(RoundingMode.CEILING);
+		  for (Recipe recipe : recipes) {
+			  kieSession.insert(recipe); 
+		  }
+	  
+		  kieSession.setGlobal("rounding", decimalFormat); kieSession.fireAllRules();
+		  kieSession.dispose(); 
+		  return recipes;
+	  
+	  
+	  }
+	 
 
 }
