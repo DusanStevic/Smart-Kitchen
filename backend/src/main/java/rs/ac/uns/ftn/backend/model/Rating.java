@@ -43,7 +43,16 @@ public class Rating {
     private Double likeDislikeRatio;
 
 	public Rating() {
-		// TODO Auto-generated constructor stub
+		this.frequency1 = 0;
+		this.frequency2 = 0;
+		this.frequency3 = 0;
+		this.frequency4 = 0;
+		this.frequency5 = 0;
+		this.frequencyLike = 0;
+		this.frequencyDislike = 0;
+		
+		
+		
 	}
 
 	public Long getId() {
@@ -141,6 +150,8 @@ public class Rating {
 		this.averageGrade = averageGrade;
 		this.likeDislikeRatio = likeDislikeRatio;
 	}
+	
+	
 	
 	
 

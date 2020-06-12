@@ -7,82 +7,6 @@ import java.text.DecimalFormat;
 
 global DecimalFormat rounding;
 
-/*can not operate with null values*/
-
-rule "Set frequency1 to 0"
-    when
-        $recipe: Recipe(getRating().getFrequency1() == null)
-    then
-    	// Set frequency1 to 0
-    	modify($recipe) { 
-    		 getRating().setFrequency1(0)
-    	}    
-end
-
-rule "Set frequency2 to 0"
-    when
-        $recipe: Recipe(getRating().getFrequency2() == null)
-    then
-    	// Set frequency2 to 0
-    	modify($recipe) { 
-    		 getRating().setFrequency2(0)
-    	}    
-end
-
-
-rule "Set frequency3 to 0"
-    when
-        $recipe: Recipe(getRating().getFrequency3() == null)
-    then
-    	// Set frequency3 to 0
-    	modify($recipe) { 
-    		 getRating().setFrequency3(0)
-    	}    
-end
-
-
-rule "Set frequency4 to 0"
-    when
-        $recipe: Recipe(getRating().getFrequency4() == null)
-    then
-    	// Set frequency4 to 0
-    	modify($recipe) { 
-    		 getRating().setFrequency4(0)
-    	}    
-end
-
-
-rule "Set frequency5 to 0"
-    when
-        $recipe: Recipe(getRating().getFrequency5() == null)
-    then
-    	// Set frequency5 to 0
-    	modify($recipe) { 
-    		 getRating().setFrequency5(0)
-    	}    
-end
-
-
-rule "Set like frequency to 0"
-    when
-        $recipe: Recipe(getRating().getFrequencyLike() == null)
-    then
-    	// Set like frequency to 0
-    	modify($recipe) { 
-    		 getRating().setFrequencyLike(0);
-    	}    
-end
-
-rule "Set dislike frequency to 0"
-    when
-        $recipe: Recipe(getRating().getFrequencyDislike() == null)
-    then
-    	// Set dislike frequency to 0
-    	modify($recipe) { 
-    		 getRating().setFrequencyDislike(0);
-    	}    
-end
-
 /*must cover edge cases between f1f2f3f4f5=00000 and f1f2f3f4f5=11111
 32 possible Binary combinations for 5 digits
 0   0   0   0   0   00000=0
@@ -134,7 +58,8 @@ rule "Calculate average grade when all frequencies are 0 f1f2f3f4f5=00000=0"
     	// dividing by zero
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)0)));
-    	}      
+    	} 
+    	System.out.println("Activated rule Calculate average grade when all frequencies are 0 f1f2f3f4f5=00000=0");     
 end
 
 rule "Calculate average grade when f1f2f3f4f5=00001=1"
@@ -151,6 +76,7 @@ rule "Calculate average grade when f1f2f3f4f5=00001=1"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5()))));
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=00001=1");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=00010=2"
@@ -167,6 +93,7 @@ rule "Calculate average grade when f1f2f3f4f5=00010=2"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=00010=2");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=00011=3"
@@ -183,6 +110,7 @@ rule "Calculate average grade when f1f2f3f4f5=00011=3"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=00011=3");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=00100=4"
@@ -199,6 +127,7 @@ rule "Calculate average grade when f1f2f3f4f5=00100=4"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=00100=4");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=00101=5"
@@ -215,6 +144,7 @@ rule "Calculate average grade when f1f2f3f4f5=00101=5"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=00101=5");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=00110=6"
@@ -231,6 +161,7 @@ rule "Calculate average grade when f1f2f3f4f5=00110=6"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=00110=6");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=00111=7"
@@ -247,6 +178,7 @@ rule "Calculate average grade when f1f2f3f4f5=00111=7"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=00111=7");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=01000=8"
@@ -263,6 +195,7 @@ rule "Calculate average grade when f1f2f3f4f5=01000=8"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=01000=8");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=01001=9"
@@ -279,6 +212,7 @@ rule "Calculate average grade when f1f2f3f4f5=01001=9"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=01001=9");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=01010=10"
@@ -295,6 +229,7 @@ rule "Calculate average grade when f1f2f3f4f5=01010=10"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=01010=10");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=01011=11"
@@ -311,6 +246,7 @@ rule "Calculate average grade when f1f2f3f4f5=01011=11"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=01011=11");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=01100=12"
@@ -327,6 +263,7 @@ rule "Calculate average grade when f1f2f3f4f5=01100=12"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=01100=12");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=01101=13"
@@ -343,6 +280,7 @@ rule "Calculate average grade when f1f2f3f4f5=01101=13"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=01101=13");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=01110=14"
@@ -359,6 +297,7 @@ rule "Calculate average grade when f1f2f3f4f5=01110=14"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=01110=14");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=01111=15"
@@ -375,6 +314,7 @@ rule "Calculate average grade when f1f2f3f4f5=01111=15"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=01111=15");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=10000=16"
@@ -391,6 +331,7 @@ rule "Calculate average grade when f1f2f3f4f5=10000=16"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=10000=16");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=10001=17"
@@ -407,6 +348,7 @@ rule "Calculate average grade when f1f2f3f4f5=10001=17"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=10001=17");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=10010=18"
@@ -423,6 +365,7 @@ rule "Calculate average grade when f1f2f3f4f5=10010=18"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=10010=18");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=10011=19"
@@ -439,6 +382,7 @@ rule "Calculate average grade when f1f2f3f4f5=10011=19"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=10011=19");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=10100=20"
@@ -455,6 +399,7 @@ rule "Calculate average grade when f1f2f3f4f5=10100=20"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=10100=20");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=10101=21"
@@ -471,6 +416,7 @@ rule "Calculate average grade when f1f2f3f4f5=10101=21"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=10101=21");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=10110=22"
@@ -487,6 +433,7 @@ rule "Calculate average grade when f1f2f3f4f5=10110=22"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=10110=22");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=10111=23"
@@ -503,6 +450,7 @@ rule "Calculate average grade when f1f2f3f4f5=10111=23"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=10111=23");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=11000=24"
@@ -519,6 +467,7 @@ rule "Calculate average grade when f1f2f3f4f5=11000=24"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=11000=24");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=11001=25"
@@ -535,6 +484,7 @@ rule "Calculate average grade when f1f2f3f4f5=11001=25"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=11001=25");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=11010=26"
@@ -550,7 +500,8 @@ rule "Calculate average grade when f1f2f3f4f5=11010=26"
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
-    	} 
+    	}
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=11010=26"); 
 end
 
 rule "Calculate average grade when f1f2f3f4f5=11011=27"
@@ -567,6 +518,7 @@ rule "Calculate average grade when f1f2f3f4f5=11011=27"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=11011=27");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=11100=28"
@@ -583,6 +535,7 @@ rule "Calculate average grade when f1f2f3f4f5=11100=28"
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
     	} 
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=11100=28");
 end
 
 rule "Calculate average grade when f1f2f3f4f5=11101=29"
@@ -598,7 +551,8 @@ rule "Calculate average grade when f1f2f3f4f5=11101=29"
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
-    	} 
+    	}
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=11101=29"); 
 end
 
 rule "Calculate average grade when f1f2f3f4f5=11110=30"
@@ -614,7 +568,8 @@ rule "Calculate average grade when f1f2f3f4f5=11110=30"
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
-    	} 
+    	}
+    	System.out.println("Activated rule Calculate average grade when f1f2f3f4f5=11110=30"); 
 end
 
 rule "Calculate average grade when all frequencies are not 0 f1f2f3f4f5=11111=31"
@@ -630,7 +585,8 @@ rule "Calculate average grade when all frequencies are not 0 f1f2f3f4f5=11111=31
     	// weighted average = sum(grade * grade frequency)/total number of grades
     	modify($recipe) { 
     		 getRating().setAverageGrade(Double.parseDouble(rounding.format((double)(1*$recipe.getRating().getFrequency1()+2*$recipe.getRating().getFrequency2()+3*$recipe.getRating().getFrequency3()+4*$recipe.getRating().getFrequency4()+5*$recipe.getRating().getFrequency5())/($recipe.getRating().getFrequency1()+$recipe.getRating().getFrequency2()+$recipe.getRating().getFrequency3()+$recipe.getRating().getFrequency4()+$recipe.getRating().getFrequency5())))); 
-    	}     
+    	}
+    	System.out.println("Activated rule Calculate average grade when all frequencies are not 0 f1f2f3f4f5=11111=31");     
 end
 
 /*Like rules*/
@@ -645,7 +601,8 @@ rule "Calculate like-dislike ratio when all values are 0 like-dislike=ld=00=0 "
     	// dividing by zero
     	modify($recipe) { 
     		getRating().setLikeDislikeRatio(Double.parseDouble(rounding.format((double)0*100)));
-    	}    
+    	}
+    	System.out.println("Activated rule Calculate like-dislike ratio when all values are 0 like-dislike=ld=00=0");    
 end
 
 rule "Calculate like dislike ratio like-dislike=ld=01=1"
@@ -660,6 +617,7 @@ rule "Calculate like dislike ratio like-dislike=ld=01=1"
     	modify($recipe) { 
     		getRating().setLikeDislikeRatio(Double.parseDouble(rounding.format((double)0*100)));	
     	}
+    	System.out.println("Activated rule Calculate like dislike ratio like-dislike=ld=01=1");
 end
 
 rule "Calculate like dislike ratio like-dislike=ld=10=2"
@@ -674,6 +632,7 @@ rule "Calculate like dislike ratio like-dislike=ld=10=2"
     	modify($recipe) { 
     		getRating().setLikeDislikeRatio(Double.parseDouble(rounding.format((double)1*100)));      		
     	}
+    	System.out.println("Activated rule Calculate like dislike ratio like-dislike=ld=10=2");
 end
 
 rule "Calculate like dislike ratio like-dislike=11=3"
@@ -688,4 +647,5 @@ rule "Calculate like dislike ratio like-dislike=11=3"
     	modify($recipe) { 
     		getRating().setLikeDislikeRatio(Double.parseDouble(rounding.format((double)100*$recipe.getRating().getFrequencyLike()/($recipe.getRating().getFrequencyLike()+$recipe.getRating().getFrequencyDislike()))));   
     	}
+    	System.out.println("Activated rule Calculate like dislike ratio like-dislike=11=3");
 end
