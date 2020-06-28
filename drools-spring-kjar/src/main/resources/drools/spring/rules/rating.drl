@@ -649,3 +649,16 @@ rule "Calculate like dislike ratio like-dislike=11=3"
     	}
     	System.out.println("Activated rule Calculate like dislike ratio like-dislike=11=3");
 end
+
+rule "Small grades"
+    when
+        $recipe: Recipe(
+        getRating().getAverageGrade() != 0 != null && 
+        getRating().getAverageGrade() <= 3)
+    then
+    	modify($recipe) { 
+    		setActive(false); 
+    	}
+        
+
+end

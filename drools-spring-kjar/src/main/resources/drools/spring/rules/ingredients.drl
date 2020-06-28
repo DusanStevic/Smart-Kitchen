@@ -6,14 +6,16 @@ rule "Total price for ingredient"
     when
         u: Ingredient()
     then
-        u.setTotal_price(u.getQuantity()*u.getPrice());
-        update(u)
+        //u.setTotal_price(u.getQuantity()*u.getPrice());
+        //update(u)
+        System.out.println("upao sam u sastojke cena!");
 end
 
 rule "Total calories for ingredient"
     when
         u: Ingredient()
     then
-        u.setTotal_calories(u.getQuantity()*u.getCalories());
-        update(u)
+        //u.setTotal_calories(u.getQuantity()*u.getCalories());
+        //update(u)
+        System.out.println("upao sam u sastojke kalorije!");
 end

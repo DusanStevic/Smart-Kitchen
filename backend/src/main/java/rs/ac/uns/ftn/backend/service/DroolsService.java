@@ -3,6 +3,12 @@ package rs.ac.uns.ftn.backend.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PreDestroy;
+
+import org.kie.api.KieBase;
+import org.kie.api.KieBaseConfiguration;
+import org.kie.api.KieServices;
+import org.kie.api.conf.EventProcessingOption;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.slf4j.Logger;
@@ -10,18 +16,23 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import rs.ac.uns.ftn.backend.dto.InputDTO;
 import rs.ac.uns.ftn.backend.model.Ingredient;
-import rs.ac.uns.ftn.backend.model.Rating;
 import rs.ac.uns.ftn.backend.model.Recipe;
 import rs.ac.uns.ftn.backend.repository.IngredientRepository;
 import rs.ac.uns.ftn.backend.repository.RatingRepository;
 import rs.ac.uns.ftn.backend.repository.RecipeRepository;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 
 @Service
 public class DroolsService {
+	
+    
+   
+
+
+
+
+
+	
 	@Autowired
 	private RecipeRepository recipeRepository;
 	
@@ -37,11 +48,37 @@ public class DroolsService {
 	
 	private final KieContainer kieContainer;
 	
-	@Autowired
+	private KieSession kieSession;
+	
+
 	public DroolsService(KieContainer kieContainer) {
 		log.info("Initialising a new example session.");
 		this.kieContainer = kieContainer;
 	}
+	
+    @PreDestroy
+    private void release(){
+        this.kieSession.dispose();
+    }
+
+    public KieContainer getKieContainer() {
+        return kieContainer;
+    }
+
+    public KieSession getKieSession() {
+        if(kieSession == null){
+        	KieServices ks = KieServices.Factory.get();
+    		KieBaseConfiguration kbconf = ks.newKieBaseConfiguration();
+    		kbconf.setOption(EventProcessingOption.STREAM);
+    		KieBase kbase = getKieContainer().newKieBase(kbconf);
+    		kieSession = kbase.newKieSession();
+        }
+        return kieSession;
+    }
+
+    public void setKieSession(KieSession kieSession) {
+        this.kieSession = kieSession;
+    }
 	
 	
 	
@@ -81,7 +118,9 @@ public class DroolsService {
 	}
 	
 	public List<Recipe> deactivate() {
-		KieSession kieSession = kieContainer.newKieSession();		
+		//KieSession kieSession = kieContainer.newKieSession();
+		//KieSession kieSession = kieContainer.newKieSession();
+		KieSession kieSession = getKieSession();
 		List<Recipe> recipes = recipeRepository.findAll();
 		for (Recipe recipe : recipes) {
 			
@@ -124,21 +163,7 @@ public class DroolsService {
 	 
 	
 	
-	  public List<Recipe> ratings() { 
-		  KieSession kieSession = kieContainer.newKieSession(); 
-		  List<Recipe> recipes = recipeRepository.findAll(); 
-		  DecimalFormat decimalFormat = new DecimalFormat("#.##"); 
-		  decimalFormat.setRoundingMode(RoundingMode.CEILING);
-		  for (Recipe recipe : recipes) {
-			  kieSession.insert(recipe); 
-		  }
-	  
-		  kieSession.setGlobal("rounding", decimalFormat); kieSession.fireAllRules();
-		  kieSession.dispose(); 
-		  return recipes;
-	  
-	  
-	  }
+
 	 
 
 }
