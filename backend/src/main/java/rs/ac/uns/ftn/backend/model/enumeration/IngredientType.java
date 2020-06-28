@@ -5,6 +5,10 @@ public enum IngredientType {
 	VEGETABLES,
 	GRAINS,
 	DAIRY,
-	PROTEIN;
+	PROTEIN,
+	FAT,
+	SUGARS,
+	SPICES,
+	WATER;
 
 }

@@ -27,7 +27,7 @@ public class RecipeService {
 	
    
     
-	public Recipe addRecipeGrade(Long id, int grade) throws ResourceNotFoundException,BadRequestException {
+	public void addRecipeGrade(Long id, int grade) throws ResourceNotFoundException,BadRequestException {
 		Recipe  recipe  = recipeRepository.findById(id).orElseThrow(
 				() -> new ResourceNotFoundException("Recipe with id '" + id + "' doesn't exist."));
         if(!(1 <= grade && grade <= 5)){
@@ -53,7 +53,7 @@ public class RecipeService {
 		    System.out.println("Recipe grade not in range from 1 to 5");
 		}
 		recipeRepository.save(recipe);
-		return recipe;
+		
 		
 	}
 

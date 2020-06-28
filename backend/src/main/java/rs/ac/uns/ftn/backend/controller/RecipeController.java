@@ -60,10 +60,10 @@ public class RecipeController {
 	
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Recipe> addRecipeGrade(@PathVariable(value = "id") Long recipeId,@RequestParam(value = "grade") int grade)
+	public ResponseEntity<Void> addRecipeGrade(@PathVariable(value = "id") Long recipeId,@RequestParam(value = "grade") int grade)
 			throws ResourceNotFoundException,BadRequestException{
-		Recipe recipe = recipeService.addRecipeGrade(recipeId, grade);
-		return new ResponseEntity<>(recipe, HttpStatus.OK);
+		recipeService.addRecipeGrade(recipeId, grade);
+		return new ResponseEntity<>(HttpStatus.OK);
 		
 	}
 	

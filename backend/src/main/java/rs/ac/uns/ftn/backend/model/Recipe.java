@@ -40,6 +40,12 @@ public class Recipe {
 	@Column(name = "active")
 	private boolean active;
 	
+	@Column(name = "image_url",nullable = true)
+	private String imageUrl;
+	
+    @Column(name = "total_calories")
+    private Double total_calories;
+	
 
 	@OneToMany(mappedBy = "recipe", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonManagedReference

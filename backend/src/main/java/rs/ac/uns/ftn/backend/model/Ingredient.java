@@ -10,15 +10,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import rs.ac.uns.ftn.backend.model.enumeration.IngredientType;
+import rs.ac.uns.ftn.backend.model.enumeration.UnitType;
 
 @Entity
 @Table(name="ingredients")
@@ -37,24 +35,26 @@ public class Ingredient {
     @Column(name = "ingredient_type", nullable = false)
     private IngredientType ingredientType;
     
-    @Column(name = "price", nullable = false)
-    private Double price;
+	@Column(name = "active")
+	private boolean active;
+	
+	@Column(name = "image_url",nullable = true)
+	private String imageUrl;
     
-    @Column(name = "quantity", nullable = false)
-    private Double quantity;
+    @Column(name = "unit_type", nullable = false)
+    private UnitType unitType;
     
-    @Column(name = "calories", nullable = false)
-    private Double calories;
+    @Column(name = "calories_per_unit", nullable = false)
+    private Double caloriesPerUnit;
     
-    @Column(name = "total_price")
-    private Double total_price;
-    
-    @Column(name = "total_calories")
-    private Double total_calories;
     
 	@OneToMany(mappedBy = "ingredient", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private Set<RecipeItem> recipeItems = new HashSet<RecipeItem>();
+
+	public Ingredient() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public Long getId() {
 		return id;
@@ -88,44 +88,36 @@ public class Ingredient {
 		this.ingredientType = ingredientType;
 	}
 
-	public Double getPrice() {
-		return price;
+	public boolean isActive() {
+		return active;
 	}
 
-	public void setPrice(Double price) {
-		this.price = price;
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
-	public Double getQuantity() {
-		return quantity;
+	public String getImageUrl() {
+		return imageUrl;
 	}
 
-	public void setQuantity(Double quantity) {
-		this.quantity = quantity;
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
-	public Double getCalories() {
-		return calories;
+	public UnitType getUnitType() {
+		return unitType;
 	}
 
-	public void setCalories(Double calories) {
-		this.calories = calories;
+	public void setUnitType(UnitType unitType) {
+		this.unitType = unitType;
 	}
 
-	public Double getTotal_price() {
-		return total_price;
+	public Double getCaloriesPerUnit() {
+		return caloriesPerUnit;
 	}
 
-	public void setTotal_price(Double total_price) {
-		this.total_price = total_price;
-	}
-
-	public Double getTotal_calories() {
-		return total_calories;
-	}
-
-	public void setTotal_calories(Double total_calories) {
-		this.total_calories = total_calories;
+	public void setCaloriesPerUnit(Double caloriesPerUnit) {
+		this.caloriesPerUnit = caloriesPerUnit;
 	}
 
 	public Set<RecipeItem> getRecipeItems() {
@@ -137,7 +129,8 @@ public class Ingredient {
 	}
 	
 	
-    
+	
+	
 	
 	
 

@@ -76,10 +76,7 @@ public class DroolsController {
 */
 	 
 	
-	  @GetMapping(value = "/ratings", produces = "application/json") public
-	  ResponseEntity<List<Recipe>> rating() { List<Recipe> ratings =
-	  droolsService.ratings(); return new ResponseEntity<List<Recipe>>(ratings,
-	  HttpStatus.OK); }
+
 	 
     
 
