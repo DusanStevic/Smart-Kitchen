@@ -18,20 +18,22 @@ public class SampleAppService {
 
 	private static Logger log = LoggerFactory.getLogger(SampleAppService.class);
 
-	//private final KieContainer kieContainer;
+	private final KieContainer kieContainer;
 
-	/*
-	 * @Autowired public SampleAppService(KieContainer kieContainer) {
-	 * log.info("Initialising a new example session."); this.kieContainer =
-	 * kieContainer; }
-	 */
+	
+	@Autowired 
+	public SampleAppService(KieContainer kieContainer) {
+	  log.info("Initialising a new example session."); 
+	  this.kieContainer = kieContainer; 
+	}
+	 
 
 	public Item getClassifiedItem(Item i) {
-		//KieSession kieSession = kieContainer.newKieSession();
-		KieSession kieSession = droolsService.getKieSession();
+		KieSession kieSession = kieContainer.newKieSession();
+		//KieSession kieSession = droolsService.getKieSession();
 		kieSession.insert(i);
 		kieSession.fireAllRules();
-		//kieSession.dispose();
+		kieSession.dispose();
 		return i;
 	}
 }

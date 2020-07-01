@@ -2,12 +2,14 @@ package rs.ac.uns.ftn.backend.controller;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,6 +17,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mobile.device.Device;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -43,6 +47,7 @@ import rs.ac.uns.ftn.backend.common.DeviceProvider;
 import rs.ac.uns.ftn.backend.converters.UserConverter;
 import rs.ac.uns.ftn.backend.dto.RegistrationDTO;
 import rs.ac.uns.ftn.backend.dto.UserDTO;
+import rs.ac.uns.ftn.backend.events.LoginEvent;
 import rs.ac.uns.ftn.backend.exceptions.ResourceNotFoundException;
 import rs.ac.uns.ftn.backend.exceptions.SavingException;
 import rs.ac.uns.ftn.backend.model.Administrator;
@@ -53,6 +58,7 @@ import rs.ac.uns.ftn.backend.model.enumeration.Role;
 import rs.ac.uns.ftn.backend.security.TokenUtils;
 import rs.ac.uns.ftn.backend.security.auth.JwtAuthenticationRequest;
 import rs.ac.uns.ftn.backend.service.CustomUserDetailsService;
+import rs.ac.uns.ftn.backend.service.DroolsService;
 import rs.ac.uns.ftn.backend.service.UserService;
 
 
@@ -61,6 +67,8 @@ import rs.ac.uns.ftn.backend.service.UserService;
 @RestController
 @RequestMapping(value = "/api/auth", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AuthenticationController {
+	@Autowired
+	private DroolsService droolsService;
 
 	@Autowired
 	TokenUtils tokenUtils;
@@ -81,6 +89,7 @@ public class AuthenticationController {
 	@CrossOrigin()
 	public ResponseEntity<String> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest,
 			HttpServletResponse response, Device device) throws AuthenticationException, IOException {
+		Authentication authentication = null;
 		System.out.println("ULETEO SAM U LOGOVANJE");
 		if (device == null) {
 			System.out.println("PUKLA DETEKCIJA");
@@ -94,10 +103,25 @@ public class AuthenticationController {
 		}
 		
 		
-		final Authentication authentication = authenticationManager
-				.authenticate(new UsernamePasswordAuthenticationToken(
-						authenticationRequest.getUsername(),
-						authenticationRequest.getPassword()));
+		
+		try {
+
+			authentication = authenticationManager
+					.authenticate(new UsernamePasswordAuthenticationToken(
+							authenticationRequest.getUsername(),
+							authenticationRequest.getPassword()));
+
+		} catch (BadCredentialsException | InternalAuthenticationServiceException e) {
+			User user = userService.findByUsername(authenticationRequest.getUsername());
+			if (user != null) {
+				LoginEvent event = new LoginEvent(new Date(), user.getId());
+				KieSession kieSession = droolsService.getKieSession();
+				kieSession.insert(event);
+				kieSession.fireAllRules();
+			}
+			e.printStackTrace();
+		}
+
 
 		// Ubaci username + password u kontext
 		SecurityContextHolder.getContext().setAuthentication(authentication);
