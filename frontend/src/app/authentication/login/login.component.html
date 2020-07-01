@@ -1,4 +1,4 @@
-<div class="container" style="margin-top: 10px; width: 35%;">
+<div class="container">
     <mat-card>
       <div class="row justify-content-center align-items-center loginForm">
         <form class="col-md-12 box" [formGroup]="form" (ngSubmit)="submit()">
@@ -8,7 +8,7 @@
             <div class="form-group row">
               <label for="username" class="control-label col-md-3"><b>Username:</b></label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="username" name="username" placeholder="username" [formControl]="form.controls['username']">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username" [formControl]="form.controls['username']">
                 <small class="text-danger"  *ngIf="form.controls.username.touched && form.controls.username.errors?.required">
                   This field can't be empty!</small>
               </div>

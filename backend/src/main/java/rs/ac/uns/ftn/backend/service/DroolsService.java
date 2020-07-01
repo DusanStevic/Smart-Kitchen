@@ -19,19 +19,11 @@ import org.springframework.stereotype.Service;
 import rs.ac.uns.ftn.backend.model.Ingredient;
 import rs.ac.uns.ftn.backend.model.Recipe;
 import rs.ac.uns.ftn.backend.repository.IngredientRepository;
-import rs.ac.uns.ftn.backend.repository.RatingRepository;
 import rs.ac.uns.ftn.backend.repository.RecipeRepository;
 
 @Service
 public class DroolsService {
 	
-    
-   
-
-
-
-
-
 	
 	@Autowired
 	private RecipeRepository recipeRepository;
@@ -39,10 +31,7 @@ public class DroolsService {
 	@Autowired
 	private IngredientRepository ingredientRepository;
 	
-	@Autowired
-	private RatingRepository ratingRepository;
-	
-	
+
 	private static Logger log = LoggerFactory.getLogger(DroolsService.class);
 
 	
@@ -67,11 +56,11 @@ public class DroolsService {
 
     public KieSession getKieSession() {
         if(kieSession == null){
-        	KieServices ks = KieServices.Factory.get();
-    		KieBaseConfiguration kbconf = ks.newKieBaseConfiguration();
-    		kbconf.setOption(EventProcessingOption.STREAM);
-    		KieBase kbase = getKieContainer().newKieBase(kbconf);
-    		kieSession = kbase.newKieSession();
+        	KieServices kieServices = KieServices.Factory.get();
+    		KieBaseConfiguration kieBaseConfiguration = kieServices.newKieBaseConfiguration();
+    		kieBaseConfiguration.setOption(EventProcessingOption.STREAM);
+    		KieBase kieBase = getKieContainer().newKieBase(kieBaseConfiguration);
+    		kieSession = kieBase.newKieSession();
         }
         return kieSession;
     }
@@ -82,12 +71,6 @@ public class DroolsService {
 	
 	
 	
-	public List<Ingredient> ingredients() {
-		List<Ingredient> ingredients = ingredientRepository.findAll();
-		return ingredients;
-  
-       
-	}
 	
 	public List<Recipe> recipes() {
 		List<Recipe> recipes = recipeRepository.findAll();

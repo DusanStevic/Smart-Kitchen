@@ -1,0 +1,33 @@
+package drools.spring.cep;
+
+import rs.ac.uns.ftn.backend.model.User;
+import rs.ac.uns.ftn.backend.events.LoginEvent;
+
+declare SuspiciousUserEvent
+    @role(event)
+    userId: Long
+    reason: String
+end;
+
+
+rule "More than 3 failed login attempts in one minute from one client"
+    when
+        $loginEvent1: LoginEvent($userId: userId)
+        Number(intValue >= 3) from accumulate(
+            $loginEvent2: LoginEvent(
+                this != $loginEvent1, 
+                userId == $userId, 
+                this meets[1m] $loginEvent1
+            ),
+            count($loginEvent2)
+        )
+        not (SuspiciousUserEvent(userId == $userId, reason == "More than 3 failed login attempts in one minute from one client."))
+    then
+    	System.out.println("WARNING: More than 3 failed login attempts in one minute from one client.");
+        insert(new SuspiciousUserEvent($userId, "More than 3 failed login attempts in one minute from one client."));
+end;
+
+
+
+
+

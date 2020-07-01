@@ -8,6 +8,16 @@
     <span class="example-spacer"></span>
 
     <div>
+      <button mat-raised-button color="primary" [matMenuTriggerFor]="viewMenu">
+        <mat-icon class="example-icon" aria-hidden="false" aria-label="Profile icon">supervised_user_circle</mat-icon>
+        <span>Profile</span>
+      </button>
+      <mat-menu #viewMenu="matMenu" yPosition="below">
+          <button mat-menu-item (click)="viewHtml()"><b>View profile</b></button>
+          <button mat-menu-item (click)="viewPdf()"><b>Change password</b></button>
+          <button mat-menu-item (click)="viewXml()"><b>Xml</b></button>
+          <button mat-menu-item (click)="quotedBy()"><b>Quoted by</b></button>
+      </mat-menu>
       <button  mat-button [routerLink]="['/profile']" id="myProfileNav">
         <mat-icon class="example-icon" aria-hidden="false" aria-label="Profile icon">supervised_user_circle</mat-icon>
         <span>Profile</span>

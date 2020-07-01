@@ -3,6 +3,7 @@
 <app-navbar-unregistered-user *ngIf="!role"></app-navbar-unregistered-user>
 
 
+
 <div layout="row" layout-fill layout-align="center center">
 <router-outlet (activate)="checkRole()"></router-outlet>
 </div>
