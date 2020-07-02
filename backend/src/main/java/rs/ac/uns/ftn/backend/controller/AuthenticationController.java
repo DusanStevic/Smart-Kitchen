@@ -59,6 +59,7 @@ import rs.ac.uns.ftn.backend.security.TokenUtils;
 import rs.ac.uns.ftn.backend.security.auth.JwtAuthenticationRequest;
 import rs.ac.uns.ftn.backend.service.CustomUserDetailsService;
 import rs.ac.uns.ftn.backend.service.DroolsService;
+import rs.ac.uns.ftn.backend.service.EmailService;
 import rs.ac.uns.ftn.backend.service.UserService;
 
 
@@ -84,6 +85,9 @@ public class AuthenticationController {
 	
 	@Autowired
     private UserService userService;
+	
+	@Autowired
+    private EmailService emailService;
 
 	@PostMapping(value = "/login")
 	@CrossOrigin()
@@ -117,6 +121,7 @@ public class AuthenticationController {
 				LoginEvent event = new LoginEvent(new Date(), user.getId());
 				KieSession kieSession = droolsService.getKieSession();
 				kieSession.insert(event);
+				kieSession.setGlobal("emailService", emailService); 
 				kieSession.fireAllRules();
 			}
 			e.printStackTrace();

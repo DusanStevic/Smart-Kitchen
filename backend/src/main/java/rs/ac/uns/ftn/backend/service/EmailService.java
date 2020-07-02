@@ -1,7 +1,9 @@
 package rs.ac.uns.ftn.backend.service;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -10,12 +12,17 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-
+import rs.ac.uns.ftn.backend.model.Administrator;
 import rs.ac.uns.ftn.backend.model.User;
+import rs.ac.uns.ftn.backend.model.enumeration.Role;
 
 
 @Service
 public class EmailService {
+	
+	@Autowired
+    private UserService userService;
+	
 	@Autowired
 	private Environment environment;
 	
@@ -36,6 +43,25 @@ public class EmailService {
 		encodedId = Base64.getEncoder().encodeToString(encodedId.getBytes());
 		mail.setText("Verification url is: http://localhost:8080/auth/confirmRegistration/"+encodedId+". Click link to verify account!");
 		javaMailSender.send(mail);
+	}
+	
+	// warn administrators about suspicious fraud case
+	public void warnAdministratorsAboutSuspiciousFraudCase(Long userId) throws MailException, InterruptedException {
+		// send mail to all administrators
+		List<User> users = userService.findAll();
+		for (User user : users) {
+			if (user instanceof Administrator) {
+				SimpleMailMessage mail = new SimpleMailMessage();
+				mail.setTo(user.getEmail());
+				mail.setFrom(environment.getProperty(EMAIL_SENDER));
+				mail.setSubject("WARNING: Suspicious fraud case.");
+				mail.setText("WARNING: Suspicious fraud case. User with id: " + userId);
+				javaMailSender.send(mail);
+				System.out.println("Warn email sent.");
+			}
+		}
+		
+
 	}
 	
 	/*

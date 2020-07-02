@@ -4,6 +4,7 @@ package rs.ac.uns.ftn.backend.cep;
 
 
 import static org.junit.Assert.assertEquals;
+import static rs.ac.uns.ftn.backend.constants.UserConstants.USER_ID;
 
 import java.util.Date;
 
@@ -15,19 +16,23 @@ import org.kie.api.KieServices;
 import org.kie.api.conf.EventProcessingOption;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import rs.ac.uns.ftn.backend.events.LoginEvent;
-import static rs.ac.uns.ftn.backend.constants.UserConstants.USER_ID;
+import rs.ac.uns.ftn.backend.service.EmailService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class CepLoginEventTest {
+	@Autowired
+    private EmailService emailService;
 	
 	@Test
 	public void moreThan3FailedLoginAttemptsInOneMinuteFromOneClientTest() {
+
 		
     	KieServices kieServices = KieServices.Factory.get();
     	KieContainer kieContainer = kieServices.newKieClasspathContainer();
@@ -35,6 +40,7 @@ public class CepLoginEventTest {
 		kieBaseConfiguration.setOption(EventProcessingOption.STREAM);
 		KieBase kieBase = kieContainer.newKieBase(kieBaseConfiguration);
 		KieSession kieSession = kieBase.newKieSession();
+		kieSession.setGlobal("emailService", emailService); 
 		
 	    
 	    LoginEvent LoginEvent1 = new LoginEvent(new Date(), USER_ID);
@@ -51,6 +57,7 @@ public class CepLoginEventTest {
 	    kieSession.insert(LoginEvent4);    
 	    ruleFireCount = kieSession.fireAllRules();
 	    assertEquals(1, ruleFireCount);
+	    
 	}
 
 }
