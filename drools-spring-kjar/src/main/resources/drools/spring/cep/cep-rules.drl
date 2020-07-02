@@ -2,6 +2,9 @@ package drools.spring.cep;
 
 import rs.ac.uns.ftn.backend.model.User;
 import rs.ac.uns.ftn.backend.events.LoginEvent;
+import rs.ac.uns.ftn.backend.service.EmailService;
+
+global EmailService emailService;
 
 declare SuspiciousUserEvent
     @role(event)
@@ -24,6 +27,7 @@ rule "More than 3 failed login attempts in one minute from one client"
         not (SuspiciousUserEvent(userId == $userId, reason == "More than 3 failed login attempts in one minute from one client."))
     then
     	System.out.println("WARNING: More than 3 failed login attempts in one minute from one client.");
+    	emailService.warnAdministratorsAboutSuspiciousFraudCase($userId);
         insert(new SuspiciousUserEvent($userId, "More than 3 failed login attempts in one minute from one client."));
 end;
 
