@@ -9,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +21,7 @@ import rs.ac.uns.ftn.backend.exceptions.BadRequestException;
 import rs.ac.uns.ftn.backend.exceptions.ResourceNotFoundException;
 import rs.ac.uns.ftn.backend.model.Recipe;
 import rs.ac.uns.ftn.backend.service.RecipeService;
+import rs.ac.uns.ftn.backend.templates.RecipeDifficultyTemplateModel;
 
 @RestController
 @RequestMapping(value="api/recipes")
@@ -65,6 +68,12 @@ public class RecipeController {
 		recipeService.addRecipeGrade(recipeId, grade);
 		return new ResponseEntity<>(HttpStatus.OK);
 		
+	}
+	
+	@PostMapping(value = "/addRecipeDifficulty")
+	public ResponseEntity<List<Recipe>> addRecipeDifficulty(@RequestBody RecipeDifficultyTemplateModel recipeDifficultyTemplateModel) {
+		List<Recipe> recipes = recipeService.addRecipeDifficulty(recipeDifficultyTemplateModel);
+		return new ResponseEntity<List<Recipe>>(recipes, HttpStatus.OK);
 	}
 	
 

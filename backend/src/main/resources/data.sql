@@ -32,12 +32,25 @@ INSERT INTO `ingredients` (id, name, description, ingredient_type, active, image
 INSERT INTO `ingredients` (id, name, description, ingredient_type, active, image_url, unit_type, calories_per_unit) VALUES (10, 'ingredient1', 'ingredient1', 0, true,null, 1,10);
 
 --recipes
-INSERT INTO `recipes` (id, name, description, recipe_type, active, image_url,  rating_id) VALUES (1, 'recipe1', 'recipe1', 0,true,null,1);
-INSERT INTO `recipes` (id, name, description, recipe_type, active, image_url,  rating_id) VALUES (2, 'recipe2', 'recipe2', 1,true,null,2);
-INSERT INTO `recipes` (id, name, description, recipe_type, active, image_url,  rating_id) VALUES (3, 'recipe3', 'recipe3', 3,false,null,3);
-INSERT INTO `recipes` (id, name, description, recipe_type, active, image_url,  rating_id) VALUES (4, 'recipe4', 'recipe4', 4,true,null,4);
-INSERT INTO `recipes` (id, name, description, recipe_type, active, image_url,  rating_id) VALUES (5, 'recipe5', 'recipe5', 4,true,null,5);
-INSERT INTO `recipes` (id, name, description, recipe_type, active, image_url,  rating_id) VALUES (6, 'recipe6', 'recipe6', 4,true,null,6);
+INSERT INTO `recipes` (id, name, description, recipe_type, active, image_url,  rating_id, difficulty, total_calories) VALUES (1, 'recipe1', 'recipe1', 0,true,null,1,null,null);
+INSERT INTO `recipes` (id, name, description, recipe_type, active, image_url,  rating_id, difficulty, total_calories) VALUES (2, 'recipe2', 'recipe2', 1,true,null,2,null,null);
+INSERT INTO `recipes` (id, name, description, recipe_type, active, image_url,  rating_id, difficulty, total_calories) VALUES (3, 'recipe3', 'recipe3', 3,false,null,3,null,null);
+INSERT INTO `recipes` (id, name, description, recipe_type, active, image_url,  rating_id, difficulty, total_calories) VALUES (4, 'recipe4', 'recipe4', 4,true,null,4,null,null);
+INSERT INTO `recipes` (id, name, description, recipe_type, active, image_url,  rating_id, difficulty, total_calories) VALUES (5, 'recipe5', 'recipe5', 4,true,null,5,null,null);
+INSERT INTO `recipes` (id, name, description, recipe_type, active, image_url,  rating_id, difficulty, total_calories) VALUES (6, 'recipe6', 'recipe6', 4,true,null,6,null,null);
+--directions
+INSERT INTO `directions` (id, description, recipe_id) VALUES (1, 'Combine almond milk and rice in a 2-3 quart saucepan, and bring to a boil.', 1);
+INSERT INTO `directions` (id, description, recipe_id) VALUES (2, 'Reduce heat and simmer for 1/2 hour with the lid on until the rice is soft.', 1);
+INSERT INTO `directions` (id, description, recipe_id) VALUES (3, 'Add sugar, vanilla, almond extract and cinnamon. Stir and serve warm.', 1);
+INSERT INTO `directions` (id, description, recipe_id) VALUES (4, 'Refrigerate leftovers within 2 hours.', 1);
+INSERT INTO `directions` (id, description, recipe_id) VALUES (8, 'Refrigerate leftovers within 2 hours.', 2);
+INSERT INTO `directions` (id, description, recipe_id) VALUES (7, 'Add sugar, vanilla, almond extract and cinnamon. Stir and serve warm.', 2);
+INSERT INTO `directions` (id, description, recipe_id) VALUES (6, 'Reduce heat and simmer for 1/2 hour with the lid on until the rice is soft.', 2);
+INSERT INTO `directions` (id, description, recipe_id) VALUES (5, 'Combine almond milk and rice in a 2-3 quart saucepan, and bring to a boil.', 2);
+
+
+
+
 --recipe_items
 INSERT INTO `recipe_items` (id, recipe_id, ingredient_id, amount) VALUES (1, 1, 1, 10);
 INSERT INTO `recipe_items` (id, recipe_id, ingredient_id, amount) VALUES (2, 1, 2, 20);

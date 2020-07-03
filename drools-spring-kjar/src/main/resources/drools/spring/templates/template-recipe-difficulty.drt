@@ -1,0 +1,28 @@
+template header
+
+lowerBound
+upperBound
+newDifficulty
+
+package drools.spring.templates;
+
+import rs.ac.uns.ftn.backend.model.*;
+import rs.ac.uns.ftn.backend.model.enumeration.RecipeDifficultyLevels;
+
+template "template-recipe-difficulty"
+
+rule "Set difficulty of recipes according to the required number of recipe directions_@{row.rowNumber}"
+no-loop true
+when
+
+	$recipe: Recipe(directions.size() >= @{lowerBound}, 
+		directions.size() <= @{upperBound}, 
+		difficulty == null);
+
+then
+	modify ($recipe){ setDifficulty(RecipeDifficultyLevels.@{newDifficulty})};
+    System.out.println("PRAVILO IZGENERISANO NA OSNOVU TEMPLEJTA");
+    
+end
+
+end template

@@ -1,5 +1,6 @@
 package rs.ac.uns.ftn.backend.model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,13 +18,19 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import rs.ac.uns.ftn.backend.model.enumeration.RecipeDifficultyLevels;
 import rs.ac.uns.ftn.backend.model.enumeration.RecipeType;
 
 @Entity
 @Table(name="recipes")
-public class Recipe {
+public class Recipe implements Serializable{
 	
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -55,6 +62,36 @@ public class Recipe {
 	@OneToOne
 	@JoinColumn(name = "rating_id")
 	private Rating rating;
+	
+	@OneToMany(mappedBy = "recipe", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private Set<Direction> directions = new HashSet<Direction>();
+	
+    @Column(name="difficulty", nullable = true)
+    private RecipeDifficultyLevels difficulty;
+
+
+	public Recipe() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public Recipe(Long id, String name, String description, RecipeType recipeType, boolean active, String imageUrl,
+			Double total_calories, Set<RecipeItem> recipeItems, Rating rating, Set<Direction> directions,
+			RecipeDifficultyLevels difficulty) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.recipeType = recipeType;
+		this.active = active;
+		this.imageUrl = imageUrl;
+		this.total_calories = total_calories;
+		this.recipeItems = recipeItems;
+		this.rating = rating;
+		this.directions = directions;
+		this.difficulty = difficulty;
+	}
 
 
 	public Long getId() {
@@ -107,6 +144,26 @@ public class Recipe {
 	}
 
 
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+
+	public Double getTotal_calories() {
+		return total_calories;
+	}
+
+
+	public void setTotal_calories(Double total_calories) {
+		this.total_calories = total_calories;
+	}
+
+
 	public Set<RecipeItem> getRecipeItems() {
 		return recipeItems;
 	}
@@ -125,27 +182,29 @@ public class Recipe {
 	public void setRating(Rating rating) {
 		this.rating = rating;
 	}
-	
-	public Recipe() {
-		// TODO Auto-generated constructor stub
+
+
+	public Set<Direction> getDirections() {
+		return directions;
 	}
 
 
-	public Recipe(Long id, String name, String description, RecipeType recipeType, boolean active,
-			Set<RecipeItem> recipeItems, Rating rating) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.recipeType = recipeType;
-		this.active = active;
-		this.recipeItems = recipeItems;
-		this.rating = rating;
+	public void setDirections(Set<Direction> directions) {
+		this.directions = directions;
 	}
-	
-	
 
 
+	public RecipeDifficultyLevels getDifficulty() {
+		return difficulty;
+	}
+
+
+	public void setDifficulty(RecipeDifficultyLevels difficulty) {
+		this.difficulty = difficulty;
+	}
+
+
+	
 	
 
 
