@@ -1,7 +1,11 @@
 package rs.ac.uns.ftn.backend.service;
 
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.drools.template.ObjectDataCompiler;
+import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,10 +13,15 @@ import rs.ac.uns.ftn.backend.exceptions.BadRequestException;
 import rs.ac.uns.ftn.backend.exceptions.ResourceNotFoundException;
 import rs.ac.uns.ftn.backend.model.Recipe;
 import rs.ac.uns.ftn.backend.repository.RecipeRepository;
+import rs.ac.uns.ftn.backend.templates.RecipeDifficultyTemplateModel;
 
 @Service
 public class RecipeService {
-	@Autowired RecipeRepository recipeRepository;
+	@Autowired
+	private DroolsService droolsService;
+	
+	@Autowired 
+	RecipeRepository recipeRepository;
 	
 	public List<Recipe> findAll() {
 		return recipeRepository.findAll();
@@ -56,6 +65,27 @@ public class RecipeService {
 		
 		
 	}
+	
+	public List<Recipe> addRecipeDifficulty(RecipeDifficultyTemplateModel recipeDifficultyTemplateModel) {
+		InputStream template = RecipeService.class.getResourceAsStream("/drools/spring/templates/template-recipe-difficulty.drt");
+        
+        List<RecipeDifficultyTemplateModel> data = new ArrayList<RecipeDifficultyTemplateModel>();
+        data.add(recipeDifficultyTemplateModel);    
+        ObjectDataCompiler converter = new ObjectDataCompiler();
+        String drl = converter.compile(data, template);
+        System.out.println(drl);
+        KieSession kieSession = droolsService.createKieSessionFromDRL(drl);
+        List<Recipe> recipes = recipeRepository.findAll();
+        for (Recipe recipe : recipes) {
+        	kieSession.insert(recipe);
+		}
+        kieSession.fireAllRules();
+        
+        
+		return recipes;
+	}
+	
+	
 
 	
 
