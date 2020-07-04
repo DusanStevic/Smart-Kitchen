@@ -6,7 +6,8 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
 	TemplateRecipeDifficultyTest.class,
-	TemplatePreparationTimeFilterTest.class
+	TemplatePreparationTimeFilterTest.class,
+	TemplateNumberOfIngredientsFilterTest.class
 })
 public class TemplateSuite {
 

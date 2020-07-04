@@ -1,0 +1,31 @@
+template header
+
+lowerBound
+upperBound
+
+
+package drools.spring.templates;
+
+import rs.ac.uns.ftn.backend.model.*;
+import java.util.*;
+global ArrayList<Recipe> filteredRecipe;
+
+template "template-number-of-ingredients-bounds-filter"
+
+rule "Recipe filter by number of ingredients bounds_@{row.rowNumber}"
+no-loop true
+when
+
+	$recipe: Recipe();
+	Number( intValue >= @{lowerBound},intValue <= @{upperBound}) from accumulate(
+        RecipeItem($this: this) from $recipe.getRecipeItems(),
+        count($this)
+    );
+
+then
+	filteredRecipe.add($recipe);
+    System.out.println("PRAVILO IZGENERISANO NA OSNOVU TEMPLEJTA:template-number-of-ingredients-bounds-filter.drt");
+    
+end
+
+end template

@@ -83,6 +83,12 @@ public class RecipeController {
 		return new ResponseEntity<List<Recipe>>(recipes, HttpStatus.OK);
 	}
 	
+	@PostMapping(value = "/filterNumberOfIngredientsBounds")
+	public ResponseEntity<List<Recipe>> filterNumberOfIngredientsBounds(@RequestBody BoundsFilterTemplateModel boundsFilterTemplateModel) {
+		List<Recipe> recipes = recipeService.filterNumberOfIngredientsBounds(boundsFilterTemplateModel);
+		return new ResponseEntity<List<Recipe>>(recipes, HttpStatus.OK);
+	}
+	
 
 
 }
