@@ -21,7 +21,7 @@ when
 
 then
 	modify ($recipe){ setDifficulty(RecipeDifficultyLevels.@{newDifficulty})};
-    System.out.println("PRAVILO IZGENERISANO NA OSNOVU TEMPLEJTA");
+    System.out.println("PRAVILO IZGENERISANO NA OSNOVU TEMPLEJTA:template-recipe-difficulty.drt");
     
 end
 

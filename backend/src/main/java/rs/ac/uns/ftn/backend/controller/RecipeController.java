@@ -21,6 +21,7 @@ import rs.ac.uns.ftn.backend.exceptions.BadRequestException;
 import rs.ac.uns.ftn.backend.exceptions.ResourceNotFoundException;
 import rs.ac.uns.ftn.backend.model.Recipe;
 import rs.ac.uns.ftn.backend.service.RecipeService;
+import rs.ac.uns.ftn.backend.templates.BoundsFilterTemplateModel;
 import rs.ac.uns.ftn.backend.templates.RecipeDifficultyTemplateModel;
 
 @RestController
@@ -73,6 +74,12 @@ public class RecipeController {
 	@PostMapping(value = "/addRecipeDifficulty")
 	public ResponseEntity<List<Recipe>> addRecipeDifficulty(@RequestBody RecipeDifficultyTemplateModel recipeDifficultyTemplateModel) {
 		List<Recipe> recipes = recipeService.addRecipeDifficulty(recipeDifficultyTemplateModel);
+		return new ResponseEntity<List<Recipe>>(recipes, HttpStatus.OK);
+	}
+	
+	@PostMapping(value = "/filterPreparationTimeBounds")
+	public ResponseEntity<List<Recipe>> filterPreparationTimeBounds(@RequestBody BoundsFilterTemplateModel boundsFilterTemplateModel) {
+		List<Recipe> recipes = recipeService.filterPreparationTimeBounds(boundsFilterTemplateModel);
 		return new ResponseEntity<List<Recipe>>(recipes, HttpStatus.OK);
 	}
 	

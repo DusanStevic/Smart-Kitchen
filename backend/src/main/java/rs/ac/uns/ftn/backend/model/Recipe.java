@@ -51,7 +51,7 @@ public class Recipe implements Serializable{
 	private String imageUrl;
 	
     @Column(name = "total_calories")
-    private Double total_calories;
+    private Double totalCalories;
 	
 
 	@OneToMany(mappedBy = "recipe", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -69,6 +69,9 @@ public class Recipe implements Serializable{
 	
     @Column(name="difficulty", nullable = true)
     private RecipeDifficultyLevels difficulty;
+    
+    @Column(name = "preparation_time", nullable = false)
+    private Integer preparationTime;
 
 
 	public Recipe() {
@@ -77,8 +80,8 @@ public class Recipe implements Serializable{
 
 
 	public Recipe(Long id, String name, String description, RecipeType recipeType, boolean active, String imageUrl,
-			Double total_calories, Set<RecipeItem> recipeItems, Rating rating, Set<Direction> directions,
-			RecipeDifficultyLevels difficulty) {
+			Double totalCalories, Set<RecipeItem> recipeItems, Rating rating, Set<Direction> directions,
+			RecipeDifficultyLevels difficulty, Integer preparationTime) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -86,11 +89,12 @@ public class Recipe implements Serializable{
 		this.recipeType = recipeType;
 		this.active = active;
 		this.imageUrl = imageUrl;
-		this.total_calories = total_calories;
+		this.totalCalories = totalCalories;
 		this.recipeItems = recipeItems;
 		this.rating = rating;
 		this.directions = directions;
 		this.difficulty = difficulty;
+		this.preparationTime = preparationTime;
 	}
 
 
@@ -154,13 +158,13 @@ public class Recipe implements Serializable{
 	}
 
 
-	public Double getTotal_calories() {
-		return total_calories;
+	public Double getTotalCalories() {
+		return totalCalories;
 	}
 
 
-	public void setTotal_calories(Double total_calories) {
-		this.total_calories = total_calories;
+	public void setTotalCalories(Double totalCalories) {
+		this.totalCalories = totalCalories;
 	}
 
 
@@ -203,6 +207,20 @@ public class Recipe implements Serializable{
 		this.difficulty = difficulty;
 	}
 
+
+	public Integer getPreparationTime() {
+		return preparationTime;
+	}
+
+
+	public void setPreparationTime(Integer preparationTime) {
+		this.preparationTime = preparationTime;
+	}
+	
+	
+
+
+	
 
 	
 	
