@@ -48,7 +48,7 @@ public class TemplateRecipeDifficultyTest {
     }
 	
 	/**
-     * Tests customer-classification-simple.drt template by manually creating
+     * Tests template-recipe-difficulty.drt template by manually creating
      * the corresponding DRL using a collection of Objects as the data source.
      */
     @Test

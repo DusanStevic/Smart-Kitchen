@@ -14,6 +14,7 @@ import rs.ac.uns.ftn.backend.exceptions.ResourceNotFoundException;
 import rs.ac.uns.ftn.backend.model.Recipe;
 import rs.ac.uns.ftn.backend.repository.RecipeRepository;
 import rs.ac.uns.ftn.backend.templates.RecipeDifficultyTemplateModel;
+import rs.ac.uns.ftn.backend.templates.BoundsFilterTemplateModel;
 
 @Service
 public class RecipeService {
@@ -83,6 +84,24 @@ public class RecipeService {
         
         
 		return recipes;
+	}
+	
+	public List<Recipe> filterPreparationTimeBounds(BoundsFilterTemplateModel boundsFilterTemplateModel) {
+		List<Recipe> filteredRecipe = new ArrayList<Recipe>();
+		InputStream template = RecipeService.class.getResourceAsStream("/drools/spring/templates/template-preparation-time-bounds-filter.drt");
+        List<BoundsFilterTemplateModel> data = new ArrayList<BoundsFilterTemplateModel>();
+        data.add(boundsFilterTemplateModel);    
+        ObjectDataCompiler converter = new ObjectDataCompiler();
+        String drl = converter.compile(data, template);
+        System.out.println(drl);
+        KieSession kieSession = droolsService.createKieSessionFromDRL(drl);
+        List<Recipe> recipes = recipeRepository.findAll();
+        for (Recipe recipe : recipes) {
+        	kieSession.insert(recipe);
+		}
+        kieSession.setGlobal("filteredRecipe", filteredRecipe);
+        kieSession.fireAllRules();
+		return filteredRecipe;
 	}
 	
 	

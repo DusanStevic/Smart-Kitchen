@@ -1,0 +1,29 @@
+template header
+
+lowerBound
+upperBound
+
+
+package drools.spring.templates;
+
+import rs.ac.uns.ftn.backend.model.*;
+import java.util.*;
+global ArrayList<Recipe> filteredRecipe;
+
+template "template-preparation-time-bounds-filter"
+
+rule "Recipe filter by preparation time bounds_@{row.rowNumber}"
+no-loop true
+when
+
+	$recipe: Recipe(preparationTime >= @{lowerBound}, 
+		preparationTime <= @{upperBound}, 
+		preparationTime != null);
+
+then
+	filteredRecipe.add($recipe);
+    System.out.println("PRAVILO IZGENERISANO NA OSNOVU TEMPLEJTA:template-preparation-time-bounds-filter.drt");
+    
+end
+
+end template
