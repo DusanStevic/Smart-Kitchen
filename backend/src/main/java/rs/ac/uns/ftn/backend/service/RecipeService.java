@@ -1,11 +1,15 @@
 package rs.ac.uns.ftn.backend.service;
 
 import java.io.InputStream;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.drools.template.ObjectDataCompiler;
 import org.kie.api.runtime.KieSession;
+import org.kie.api.runtime.rule.QueryResults;
+import org.kie.api.runtime.rule.QueryResultsRow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -121,6 +125,37 @@ public class RecipeService {
         kieSession.fireAllRules();
 		return filteredRecipe;
 	}
+	
+	public List<Recipe> getRecipeTotalCalories() {
+		KieSession kieSession = droolsService.getKieSession();
+		List<Recipe> recipes = findAll();
+		for (Recipe recipe : recipes) {
+			kieSession.insert(recipe);
+		}
+		QueryResults results = kieSession.getQueryResults("Total calories in recipe");
+		for(QueryResultsRow queryResult : results) {
+			Recipe recipe = (Recipe) queryResult.get("$recipe");
+			Double totalCalories = (Double) queryResult.get("$totalCalories");
+			recipe.setTotalCalories(totalCalories);
+			
+		
+
+		}
+		return recipes;
+	}
+	
+	public List<Recipe> getRecipesWeightLoss() { 
+		  KieSession kieSession = droolsService.getKieSession();
+		  List<Recipe> recipes = recipeRepository.findAll(); 
+		  for (Recipe recipe : recipes) {
+			  kieSession.insert(recipe); 
+		  }
+		  kieSession.fireAllRules();
+		  //kieSession.dispose(); 
+		  return recipes;
+	  
+	  
+	  }
 	
 	
 

@@ -50,7 +50,7 @@ public class Recipe implements Serializable{
 	@Column(name = "image_url",nullable = true)
 	private String imageUrl;
 	
-    @Column(name = "total_calories")
+    @Column(name = "total_calories",nullable = true)
     private Double totalCalories;
 	
 

@@ -1,0 +1,11 @@
+package drools.spring.backward;
+
+import rs.ac.uns.ftn.backend.model.*;
+
+query "Total calories in recipe"
+	$recipe: Recipe(totalCalories == null);
+	$totalCalories: Number() from accumulate (
+		RecipeItem($amount: amount,$caloriesPerUnit:ingredient.caloriesPerUnit) from $recipe.getRecipeItems(),
+		sum($amount*$caloriesPerUnit));
+end;
+

@@ -89,6 +89,18 @@ public class RecipeController {
 		return new ResponseEntity<List<Recipe>>(recipes, HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/getRecipeTotalCalories")
+	public ResponseEntity<List<Recipe>> getRecipeTotalCalories() {
+		List<Recipe> recipes = recipeService.getRecipeTotalCalories();
+		return new ResponseEntity<>(recipes, HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/getRecipesWeightLoss")
+	public ResponseEntity<List<Recipe>> getRecipesWeightLoss() {
+		List<Recipe> recipes = recipeService.getRecipesWeightLoss();
+		return new ResponseEntity<>(recipes, HttpStatus.OK);
+	}
+	
 
 
 }

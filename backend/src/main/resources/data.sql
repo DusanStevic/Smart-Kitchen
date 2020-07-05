@@ -32,8 +32,8 @@ INSERT INTO `ingredients` (id, name, description, ingredient_type, active, image
 INSERT INTO `ingredients` (id, name, description, ingredient_type, active, image_url, unit_type, calories_per_unit) VALUES (10, 'ingredient1', 'ingredient1', 0, true,null, 1,10);
 
 --recipes
-INSERT INTO `recipes` (id, name, description, recipe_type, active, image_url,  rating_id, difficulty, total_calories, preparation_time) VALUES (1, 'recipe1', 'recipe1', 0,true,null,1,null,null,10);
-INSERT INTO `recipes` (id, name, description, recipe_type, active, image_url,  rating_id, difficulty, total_calories, preparation_time) VALUES (2, 'recipe2', 'recipe2', 1,true,null,2,null,null,20);
+INSERT INTO `recipes` (id, name, description, recipe_type, active, image_url,  rating_id, difficulty, total_calories, preparation_time) VALUES (1, 'recipe1', 'recipe1', 0,true,null,1,null,null,110);
+INSERT INTO `recipes` (id, name, description, recipe_type, active, image_url,  rating_id, difficulty, total_calories, preparation_time) VALUES (2, 'recipe2', 'recipe2', 1,true,null,2,null,null,120);
 INSERT INTO `recipes` (id, name, description, recipe_type, active, image_url,  rating_id, difficulty, total_calories, preparation_time) VALUES (3, 'recipe3', 'recipe3', 3,false,null,3,null,null,30);
 INSERT INTO `recipes` (id, name, description, recipe_type, active, image_url,  rating_id, difficulty, total_calories, preparation_time) VALUES (4, 'recipe4', 'recipe4', 4,true,null,4,null,null,40);
 INSERT INTO `recipes` (id, name, description, recipe_type, active, image_url,  rating_id, difficulty, total_calories, preparation_time) VALUES (5, 'recipe5', 'recipe5', 4,true,null,5,null,null,50);
