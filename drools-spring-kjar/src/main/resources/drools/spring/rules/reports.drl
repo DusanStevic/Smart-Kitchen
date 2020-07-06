@@ -1,0 +1,29 @@
+package drools.spring.rules;
+
+import rs.ac.uns.ftn.backend.model.*;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
+
+
+
+rule "Possible high cholesterol"
+	agenda-group "reports"
+    when
+        $user: RegisteredUser($preparedRecipe: preparedRecipe);
+        accumulate(
+         	PreparedRecipe($d: this, $creationDate: creationDate, $creationDate.isAfter(LocalDate.now().minusMonths(6)), $recipe: recipe) from $preparedRecipe and
+         	List(size > 0) from collect(
+         		Recipe(totalCalories >900) 
+        ),
+         	$dijagnoze: collectList($d)
+        
+        )
+     
+        eval($dijagnoze.size() >= 3)
+    then
+         System.out.println("MOGUC VISOK PRITISAK!!!");
+end
+
+
+

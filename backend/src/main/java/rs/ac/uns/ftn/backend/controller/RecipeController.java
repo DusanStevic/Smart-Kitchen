@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import rs.ac.uns.ftn.backend.exceptions.BadRequestException;
 import rs.ac.uns.ftn.backend.exceptions.ResourceNotFoundException;
 import rs.ac.uns.ftn.backend.model.Recipe;
+import rs.ac.uns.ftn.backend.model.RegisteredUser;
 import rs.ac.uns.ftn.backend.service.RecipeService;
+import rs.ac.uns.ftn.backend.service.UserService;
 import rs.ac.uns.ftn.backend.templates.BoundsFilterTemplateModel;
 import rs.ac.uns.ftn.backend.templates.RecipeDifficultyTemplateModel;
 
@@ -28,6 +30,9 @@ import rs.ac.uns.ftn.backend.templates.RecipeDifficultyTemplateModel;
 public class RecipeController {
 	
 	@Autowired  RecipeService recipeService;
+	
+	@Autowired 
+	private UserService userService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Recipe>> getRecipes() {
@@ -102,7 +107,9 @@ public class RecipeController {
 	  @GetMapping(value = "/allIngredients") public ResponseEntity<Recipe> allIngredients() throws ResourceNotFoundException { 
 		  Recipe recipe = recipeService.getBestRecipe(); 
 		  return new ResponseEntity<>(recipe, HttpStatus.OK); }
-	 
+	  @GetMapping(value = "/reports") public ResponseEntity<RegisteredUser> reports() throws ResourceNotFoundException {  
+		  RegisteredUser loggedUser = (RegisteredUser) userService.findById(1L);
+		  return new ResponseEntity<>(loggedUser,HttpStatus.OK); }
 	
 
 	

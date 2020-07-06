@@ -249,7 +249,24 @@ public class RecipeService {
 		  
 		  }
 	 
+	  	public  RegisteredUser reports() throws ResourceNotFoundException {
+		  
+		  KieSession kieSession = kieContainer.newKieSession(); 
 	
+		  RegisteredUser loggedUser = (RegisteredUser) userService.findById(1L);
+		  System.out.println(loggedUser.toString());
+		  
+
+		  kieSession.insert(loggedUser);
+		  kieSession.getAgenda().getAgendaGroup("reports").setFocus();
+		  kieSession.fireAllRules(); 
+		  kieSession.dispose();
+		  
+		  System.out.println("MOGUC VISOK PRITISAK!!!");
+		 
+		  return loggedUser;
+		  
+		  }
 	
 	
 	
