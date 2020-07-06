@@ -220,6 +220,34 @@ public class RecipeService {
 	  
 	  
 	  }
+	  
+	  public Recipe allIngredients() throws ResourceNotFoundException {
+		  
+		  KieSession kieSession = kieContainer.newKieSession(); 
+		  List<Recipe> recipes =
+		  recipeRepository.findAll(); 
+		  for (Recipe recipe : recipes) {
+			  kieSession.insert(recipe); 
+		  } 
+		  RegisteredUser loggedUser = (RegisteredUser) userService.findById(1L);
+		  System.out.println(loggedUser.toString());
+		  
+		  for (Ingredient ingredient : loggedUser.getFridgeIngredients()) {
+			  System.out.println(ingredient.toString());
+			
+		  }
+		  kieSession.insert(loggedUser);
+		  
+		  Recipe bestRecipe = null; kieSession.setGlobal("bestRecipe", bestRecipe);
+		  kieSession.getAgenda().getAgendaGroup("recommendation").setFocus();
+		  kieSession.fireAllRules(); 
+		  kieSession.dispose();
+		  bestRecipe = (Recipe) kieSession.getGlobal("bestRecipe");
+		  System.out.println(bestRecipe.toString());
+		  return bestRecipe;
+		  
+		  
+		  }
 	 
 	
 	

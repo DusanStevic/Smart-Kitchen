@@ -98,6 +98,10 @@ public class RecipeController {
 	  @GetMapping(value = "/getBestRecipe") public ResponseEntity<Recipe>
 	  getBestRecipe() throws ResourceNotFoundException { Recipe recipe = recipeService.getBestRecipe(); return new
 	  ResponseEntity<>(recipe, HttpStatus.OK); }
+	  
+	  @GetMapping(value = "/allIngredients") public ResponseEntity<Recipe> allIngredients() throws ResourceNotFoundException { 
+		  Recipe recipe = recipeService.getBestRecipe(); 
+		  return new ResponseEntity<>(recipe, HttpStatus.OK); }
 	 
 	
 
