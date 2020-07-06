@@ -1,6 +1,8 @@
 package rs.ac.uns.ftn.backend.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -16,22 +18,24 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class RegisteredUser extends User {
 	private static final long serialVersionUID = 1L;
 
-	/*
-	 * @OneToMany(mappedBy = "buyer", fetch = FetchType.LAZY, cascade =
-	 * CascadeType.ALL)
-	 * 
-	 * @JsonManagedReference("buyer") private Set<Reservation> reservations = new
-	 * HashSet<>();
-	 * 
-	 * public RegisteredUser() { super(); }
-	 * 
-	 * public RegisteredUser(Set<Reservation> reservations) { super();
-	 * this.reservations = reservations; }
-	 * 
-	 * public Set<Reservation> getReservations() { return reservations; }
-	 * 
-	 * public void setReservations(Set<Reservation> reservations) {
-	 * this.reservations = reservations; }
-	 */
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private Set<FridgeItem> fridgeItems = new HashSet<FridgeItem>();
+	
+	public List<Ingredient> getFridgeIngredients(){
+		List<Ingredient> fridgeIngredients = new ArrayList<>();
+		for (FridgeItem fridgeItem : fridgeItems) {
+			fridgeIngredients.add(fridgeItem.getIngredient());
+		}
+		return fridgeIngredients;
+	}
+
+	public Set<FridgeItem> getFridgeItems() {
+		return fridgeItems;
+	}
+
+	public void setFridgeItems(Set<FridgeItem> fridgeItems) {
+		this.fridgeItems = fridgeItems;
+	}
 
 }

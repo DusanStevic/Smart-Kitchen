@@ -1,0 +1,32 @@
+package drools.spring.rules;
+
+import rs.ac.uns.ftn.backend.model.*;
+
+global Recipe bestRecipe;
+
+rule "The Best Recipe"
+	agenda-group "recommendation"
+	salience ((100*$value) / $recipe.getRecipeIngredients().size())
+    when
+        $recipe: Recipe($name: name)
+        $registeredUser: RegisteredUser()
+        Number($value: intValue >= 5) from accumulate(
+        	Ingredient($t:this, this memberOf $recipe.getRecipeIngredients()) from $registeredUser.getFridgeIngredients(),
+        	count($t)
+        )
+
+
+    then
+    	bestRecipe = $recipe;
+    	drools.getKnowledgeRuntime().setGlobal("bestRecipe", $recipe);
+    	System.out.println("ZADOVOLJENO BAREM 5 SASTOJAKA IZ RECEPTA");
+        System.out.println("THE BEST RECIPE RECIPE INGREDIENTS"+$recipe.getRecipeIngredients().size());
+        System.out.println("THE BEST RECIPE FRIDGE INGREDIENTS"+$registeredUser.getFridgeIngredients().size());
+        System.out.println("Recept: " + $name);
+        
+end
+
+
+
+
+

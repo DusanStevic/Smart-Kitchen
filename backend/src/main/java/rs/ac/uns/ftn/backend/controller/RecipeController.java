@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,13 +51,7 @@ public class RecipeController {
 	}
 	
 	
-	/*
-	 * @DeleteMapping("/cancel/{id}")
-	 * 
-	 * @PreAuthorize("hasRole('ROLE_USER')") public ResponseEntity
-	 * cancelTicket(@PathVariable Long id) { ticketsService.cancelTicket(id); return
-	 * ResponseEntity.ok().build(); }
-	 */
+
 	
 
 	
@@ -100,6 +93,14 @@ public class RecipeController {
 		List<Recipe> recipes = recipeService.getRecipesWeightLoss();
 		return new ResponseEntity<>(recipes, HttpStatus.OK);
 	}
+	
+	
+	  @GetMapping(value = "/getBestRecipe") public ResponseEntity<Recipe>
+	  getBestRecipe() throws ResourceNotFoundException { Recipe recipe = recipeService.getBestRecipe(); return new
+	  ResponseEntity<>(recipe, HttpStatus.OK); }
+	 
+	
+
 	
 
 
