@@ -5,4 +5,3 @@ Video Presentation: [Smart Kitchen](https://drive.google.com/file/d/1pUMfnD4a0gg
 
 TO DO :
 1. Srediti front
-2. Kompleksniji reporting
