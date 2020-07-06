@@ -1,7 +1,9 @@
 package rs.ac.uns.ftn.backend.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -216,6 +218,24 @@ public class Recipe implements Serializable{
 	public void setPreparationTime(Integer preparationTime) {
 		this.preparationTime = preparationTime;
 	}
+	
+	public List<Ingredient> getRecipeIngredients(){
+		List<Ingredient> recipeIngredients = new ArrayList<>();
+		for (RecipeItem recipeItem : recipeItems) {
+			recipeIngredients.add(recipeItem.getIngredient());
+		}
+		return recipeIngredients;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Recipe [id=" + id + ", name=" + name + ", description=" + description + ", recipeType=" + recipeType
+				+ ", active=" + active + ", imageUrl=" + imageUrl + ", totalCalories=" + totalCalories
+				+ ", recipeItems=" + recipeItems + ", rating=" + rating + ", directions=" + directions + ", difficulty="
+				+ difficulty + ", preparationTime=" + preparationTime + "]";
+	}
+	
 	
 	
 

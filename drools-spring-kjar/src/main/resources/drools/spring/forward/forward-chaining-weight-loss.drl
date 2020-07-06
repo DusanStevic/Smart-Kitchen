@@ -3,6 +3,12 @@ package drools.spring.forward;
 import rs.ac.uns.ftn.backend.model.*;
 import rs.ac.uns.ftn.backend.model.enumeration.RecipeDifficultyLevels;
 
+query calculateTotalCaloriesInRecipe(Recipe recipe, Number $totalCalories)
+	$totalCalories:= Number() from accumulate (
+		RecipeItem($amount: amount,$caloriesPerUnit:ingredient.caloriesPerUnit) from recipe.getRecipeItems(),
+		sum($amount*$caloriesPerUnit));
+end;
+
 rule "Recipe difficulty"
     when
         $recipe: Recipe(difficulty == null, preparationTime > 100)
@@ -15,9 +21,7 @@ end
 rule "Calculate total calories in recipe"
     when
         $recipe: Recipe(difficulty == RecipeDifficultyLevels.HARD, totalCalories == null)
-        $totalCalories: Number() from accumulate (
-		RecipeItem($amount: amount,$caloriesPerUnit:ingredient.caloriesPerUnit) from $recipe.getRecipeItems(),
-		sum($amount*$caloriesPerUnit));
+		calculateTotalCaloriesInRecipe($recipe, $totalCalories;);
     then
 
     	System.out.println("Calculate total calories in recipe");

@@ -62,6 +62,7 @@ INSERT INTO `recipe_items` (id, recipe_id, ingredient_id, amount) VALUES (7, 2, 
 INSERT INTO `recipe_items` (id, recipe_id, ingredient_id, amount) VALUES (8, 2, 8, 80);
 INSERT INTO `recipe_items` (id, recipe_id, ingredient_id, amount) VALUES (9, 3, 9, 90);
 INSERT INTO `recipe_items` (id, recipe_id, ingredient_id, amount) VALUES (10, 4, 10, 100);
+INSERT INTO `recipe_items` (id, recipe_id, ingredient_id, amount) VALUES (11, 1, 3, 100);
 
 --ratings
 INSERT INTO `ratings` (id, frequency1, frequency2, frequency3, frequency4, frequency5, frequency_like, frequency_dislike) VALUES (1, 33, 29, 40, 124, 252, 75, 10);
@@ -71,3 +72,14 @@ INSERT INTO `ratings` (id, frequency1, frequency2, frequency3, frequency4, frequ
 INSERT INTO `ratings` (id, frequency1, frequency2, frequency3, frequency4, frequency5, frequency_like, frequency_dislike) VALUES (5, 33, 29, 40, 124, 252, 75, 10);
 INSERT INTO `ratings` (id, frequency1, frequency2, frequency3, frequency4, frequency5, frequency_like, frequency_dislike) VALUES (6, 0, 10, 0, 0, 0, 0, 10);
         
+--fridge_items
+INSERT INTO `fridge_items` (id, user_id, ingredient_id, amount) VALUES (1, 1, 1, 10);
+INSERT INTO `fridge_items` (id, user_id, ingredient_id, amount) VALUES (2, 1, 2, 20);
+INSERT INTO `fridge_items` (id, user_id, ingredient_id, amount) VALUES (3, 1, 3, 30);
+INSERT INTO `fridge_items` (id, user_id, ingredient_id, amount) VALUES (4, 1, 4, 40);
+INSERT INTO `fridge_items` (id, user_id, ingredient_id, amount) VALUES (5, 1, 5, 50);
+INSERT INTO `fridge_items` (id, user_id, ingredient_id, amount) VALUES (6, 1, 6, 60);
+INSERT INTO `fridge_items` (id, user_id, ingredient_id, amount) VALUES (7, 1, 7, 70);
+INSERT INTO `fridge_items` (id, user_id, ingredient_id, amount) VALUES (8, 1, 8, 80);
+INSERT INTO `fridge_items` (id, user_id, ingredient_id, amount) VALUES (9, 1, 9, 90);
+INSERT INTO `fridge_items` (id, user_id, ingredient_id, amount) VALUES (10, 1, 10, 100);

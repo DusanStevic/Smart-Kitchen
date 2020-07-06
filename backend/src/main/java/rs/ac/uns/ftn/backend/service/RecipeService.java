@@ -1,32 +1,56 @@
 package rs.ac.uns.ftn.backend.service;
 
 import java.io.InputStream;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.drools.template.ObjectDataCompiler;
+import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.rule.QueryResults;
 import org.kie.api.runtime.rule.QueryResultsRow;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import rs.ac.uns.ftn.backend.exceptions.BadRequestException;
 import rs.ac.uns.ftn.backend.exceptions.ResourceNotFoundException;
+import rs.ac.uns.ftn.backend.model.Ingredient;
 import rs.ac.uns.ftn.backend.model.Recipe;
+import rs.ac.uns.ftn.backend.model.RegisteredUser;
 import rs.ac.uns.ftn.backend.repository.RecipeRepository;
-import rs.ac.uns.ftn.backend.templates.RecipeDifficultyTemplateModel;
+import rs.ac.uns.ftn.backend.repository.UserRepository;
 import rs.ac.uns.ftn.backend.templates.BoundsFilterTemplateModel;
+import rs.ac.uns.ftn.backend.templates.RecipeDifficultyTemplateModel;
 
 @Service
 public class RecipeService {
+	
+	private static Logger log = LoggerFactory.getLogger(SampleAppService.class);
+
+	private final KieContainer kieContainer;
+
+	
+	@Autowired 
+	public RecipeService(KieContainer kieContainer) {
+	  log.info("Initialising a new example session."); 
+	  this.kieContainer = kieContainer; 
+	}
+	
 	@Autowired
 	private DroolsService droolsService;
 	
 	@Autowired 
 	RecipeRepository recipeRepository;
+	
+	@Autowired 
+	UserRepository userRepository;
+	@Autowired 
+	private UserService userService;
 	
 	public List<Recipe> findAll() {
 		return recipeRepository.findAll();
@@ -127,7 +151,7 @@ public class RecipeService {
 	}
 	
 	public List<Recipe> getRecipeTotalCalories() {
-		KieSession kieSession = droolsService.getKieSession();
+		KieSession kieSession = kieContainer.newKieSession();
 		List<Recipe> recipes = findAll();
 		for (Recipe recipe : recipes) {
 			kieSession.insert(recipe);
@@ -141,21 +165,64 @@ public class RecipeService {
 		
 
 		}
+		kieSession.dispose();
 		return recipes;
 	}
 	
+
+	
 	public List<Recipe> getRecipesWeightLoss() { 
-		  KieSession kieSession = droolsService.getKieSession();
+		KieSession kieSession = kieContainer.newKieSession();
 		  List<Recipe> recipes = recipeRepository.findAll(); 
 		  for (Recipe recipe : recipes) {
 			  kieSession.insert(recipe); 
 		  }
 		  kieSession.fireAllRules();
-		  //kieSession.dispose(); 
+		  kieSession.dispose(); 
 		  return recipes;
 	  
 	  
+	 }
+	// Returns currently logged user
+	private RegisteredUser getLoggedUser() {
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (!(authentication instanceof AnonymousAuthenticationToken)) {
+			String username = authentication.getName();
+			return (RegisteredUser) userRepository.findByUsername(username);
+		}
+		return null;
+	}
+	
+	
+	  public Recipe getBestRecipe() throws ResourceNotFoundException {
+	  
+	  KieSession kieSession = kieContainer.newKieSession(); 
+	  List<Recipe> recipes =
+	  recipeRepository.findAll(); for (Recipe recipe : recipes) {
+	  kieSession.insert(recipe); } 
+	  RegisteredUser loggedUser = (RegisteredUser) userService.findById(1L);
+	  System.out.println(loggedUser.toString());
+	  
+	  for (Ingredient ingredient : loggedUser.getFridgeIngredients()) {
+		  System.out.println(ingredient.toString());
+		
+	}
+	  kieSession.insert(loggedUser);
+	  
+	  Recipe bestRecipe = null; kieSession.setGlobal("bestRecipe", bestRecipe);
+	  kieSession.getAgenda().getAgendaGroup("recommendation").setFocus();
+	  kieSession.fireAllRules(); 
+	  kieSession.dispose();
+	  bestRecipe = (Recipe) kieSession.getGlobal("bestRecipe");
+	  System.out.println(bestRecipe.toString());
+	  return bestRecipe;
+	  
+	  
 	  }
+	 
+	
+	
 	
 	
 
