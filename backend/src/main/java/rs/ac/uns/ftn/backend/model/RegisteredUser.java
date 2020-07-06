@@ -22,6 +22,13 @@ public class RegisteredUser extends User {
 	@JsonManagedReference
 	private Set<FridgeItem> fridgeItems = new HashSet<FridgeItem>();
 	
+	
+
+	
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private Set<PreparedRecipe> preparedRecipe = new HashSet<PreparedRecipe>();
+	
 	public List<Ingredient> getFridgeIngredients(){
 		List<Ingredient> fridgeIngredients = new ArrayList<>();
 		for (FridgeItem fridgeItem : fridgeItems) {
@@ -37,5 +44,27 @@ public class RegisteredUser extends User {
 	public void setFridgeItems(Set<FridgeItem> fridgeItems) {
 		this.fridgeItems = fridgeItems;
 	}
+
+	public Set<PreparedRecipe> getPreparedRecipe() {
+		return preparedRecipe;
+	}
+
+	public void setPreparedRecipe(Set<PreparedRecipe> preparedRecipe) {
+		this.preparedRecipe = preparedRecipe;
+	}
+	public RegisteredUser() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public RegisteredUser(Set<FridgeItem> fridgeItems, Set<PreparedRecipe> preparedRecipe) {
+		super();
+		this.fridgeItems = fridgeItems;
+		this.preparedRecipe = preparedRecipe;
+	}
+	
+	
+	
+	
+	
 
 }

@@ -83,3 +83,15 @@ INSERT INTO `fridge_items` (id, user_id, ingredient_id, amount) VALUES (7, 1, 7,
 INSERT INTO `fridge_items` (id, user_id, ingredient_id, amount) VALUES (8, 1, 8, 80);
 INSERT INTO `fridge_items` (id, user_id, ingredient_id, amount) VALUES (9, 1, 9, 90);
 INSERT INTO `fridge_items` (id, user_id, ingredient_id, amount) VALUES (10, 1, 10, 100);
+
+
+--prepared_recipes
+INSERT INTO `prepared_recipes` (id, creation_date, recipe_id,user_id) VALUES (1, '2020-03-03 19:13:42.453000', 1,1);
+INSERT INTO `prepared_recipes` (id, creation_date, recipe_id,user_id) VALUES (2, '2020-03-03 19:13:42.453000', 2,1);
+INSERT INTO `prepared_recipes` (id, creation_date, recipe_id,user_id) VALUES (3, '2020-03-03 19:13:42.453000', 3,1);
+INSERT INTO `prepared_recipes` (id, creation_date, recipe_id,user_id) VALUES (4, '2020-03-03 19:13:42.453000', 4,1);
+INSERT INTO `prepared_recipes` (id, creation_date, recipe_id,user_id) VALUES (5, '2020-03-03 19:13:42.453000', 5,1);
+INSERT INTO `prepared_recipes` (id, creation_date, recipe_id,user_id) VALUES (6, '2020-03-03 19:13:42.453000', 6,1);
+INSERT INTO `prepared_recipes` (id, creation_date, recipe_id,user_id) VALUES (7, '2020-03-03 19:13:42.453000', 1,1);
+INSERT INTO `prepared_recipes` (id, creation_date, recipe_id,user_id) VALUES (8, '2020-03-03 19:13:42.453000', 2,1);
+
